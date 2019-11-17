@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
     $("#div_ta").hide();
+    $("#div_mta").hide();
+    $("#div_emp").hide();
 
     //Date picker
     $('#fecha_ingreso').datepicker({
@@ -8,7 +10,7 @@ $(document).ready(function(){
     })
   
     $.validator.addMethod("numero", function(value, element) {
-        return /^[ 0-9-()]*$/i.test(value);
+        return /^[ 0-9-().,]*$/i.test(value);
     }, "Ingrese sólo números");
 
 
@@ -73,12 +75,29 @@ $(document).ready(function(){
       }
     });
 
-    $("#tipo_ayuda").on("change", function(){
+    $('input[id=cta]').on('change', function() {
+      if ($(this).is(':checked') ) {
+          $("#div_mta").show();
+      } else {
+          $("#div_mta").hide();
+      }
+    });
+
+      $("#tipo_ayuda").on("change", function(){
         if($("#tipo_ayuda").val()==="otro_ta"){
           $("#div_ta").show();
         }else{
           $("#div_ta").hide();
           $("#otro_tipo_ayuda").val("");
+        }
+      });
+
+      $('input[id=em]').on('change', function() {
+        if ($(this).is(':checked') ) {
+            $("#div_emp").show();
+        } else {
+            $("#div_emp").hide();
+            $("#emprendedor").val("");
         }
       });
 
@@ -140,10 +159,11 @@ $(document).ready(function(){
     $('#bandera').val("edit");
     $.ajax({
       type: 'POST',
-      url: '../build/sql/crud_oficinas.php',
+      url: '../build/sql/crud_ayudas_recibidas.php',
       data: $("#form_ayuda_recibida").serialize()
     })
     .done(function(resultado_ajax){
+      alert(resultado_ajax);
       if(resultado_ajax === "Exito"){
          
          PNotify.success({
@@ -160,7 +180,7 @@ $(document).ready(function(){
                  primary: true,
                  click: function(notice) {
                    notice.close();
-                   location.href='../production/lista_oficinas.php';
+                   location.href='../production/lista_ayudas_recibidas.php';
                  }
                }]
              },
@@ -191,7 +211,7 @@ $(document).ready(function(){
                primary: true,
                click: function(notice) {
                  notice.close();
-                 location.href='../production/lista_oficinas.php';
+                 location.href='../production/lista_ayudas_recibidas.php';
                }
              }]
            },
@@ -218,142 +238,3 @@ $(document).ready(function(){
 
 });
 
-function mostrar_oficina(id){
- $("#mostrar").val(id);
- $("#from_mostrar_oficina").submit();
-}
-
-function editar_oficina(id){
- var notice = PNotify.notice({
-   title: 'Advertencia',
-   text: '¿Esta seguro que desea modificar el registro?',
-   styling: 'bootstrap3',
-   icons: 'bootstrap3',
-   icon: true,
-   hide: false,
-   stack: {
-     'dir1': 'down',
-     'modal': true,
-     'firstpos1': 25
-   },
-   modules: {
-     Confirm: {
-       confirm: true
-     },
-     Buttons: {
-       closer: false,
-       sticker: false
-     },
-     History: {
-       history: false
-     },
-   }
- });
- notice.on('pnotify.confirm', function() {
-   $("#id").val(id);
-   $("#from_editar_oficina").submit();
- });
- notice.on('pnotify.cancel', function() {
-   PNotify.success({
-     title: 'Éxito',
-     text: 'Proceso Cancelado.',
-     styling: 'bootstrap3',
-     icons: 'bootstrap3'
-   });
- });
- 
-}
-
-function eliminar_oficina(id){
-
- var notice = PNotify.notice({
-   title: 'Advertencia',
-   text: '¿Esta seguro que desea eliminar el registro?',
-   styling: 'bootstrap3',
-   icons: 'bootstrap3',
-   icon: true,
-   hide: false,
-   stack: {
-     'dir1': 'down',
-     'modal': true,
-     'firstpos1': 25
-   },
-   modules: {
-     Confirm: {
-       confirm: true
-     },
-     Buttons: {
-       closer: false,
-       sticker: false
-     },
-     History: {
-       history: false
-     },
-   }
- });
- notice.on('pnotify.confirm', function() {
-     var bandera = "delete";
-     $.ajax({
-      type: 'POST',
-      url: '../build/sql/crud_oficinas.php',
-      data: {'bandera' : bandera, 'id' : id}
-     })
-     .done(function(resultado_ajax){
-
-      if(resultado_ajax === "Exito"){
-         
-         PNotify.success({
-           title: 'Éxito',
-           text: 'Registro eliminado.',
-           styling: 'bootstrap3',
-           icons: 'bootstrap3',
-           hide: false,
-           modules: {
-             Confirm: {
-               confirm: true,
-               buttons: [{
-                 text: 'Aceptar',
-                 primary: true,
-                 click: function(notice) {
-                   notice.close();
-                   location.href='../production/lista_oficinas.php';
-                 }
-               }]
-             },
-             Buttons: {
-               closer: false,
-               sticker: false
-             },
-             History: {
-               history: false
-             }
-           }
-         });
-         
-      }
-      if(resultado_ajax === "Error"){
-       PNotify.error({
-         title: 'Error',
-         text: 'Sin conexión a la base de datos.',
-         styling: 'bootstrap3',
-         icons: 'bootstrap3'
-       });
-              
-      }             
-    })
-    .fail(function(){
-      alert('Error al cargar la Pagina')
-    })
- });
- notice.on('pnotify.cancel', function() {
-   PNotify.success({
-     title: 'Éxito',
-     text: 'Proceso Cancelado.',
-     styling: 'bootstrap3',
-     icons: 'bootstrap3'
-   });
- });
- 
-       
-
-}

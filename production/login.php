@@ -60,10 +60,10 @@ if($clave==$clave2){
           <div>
           <section class="login_content">
             <form id="form_login" name="form_login" method="POST" action="login.php">
-
-              <!-- <img src="" width="100%" height="100%"> -->
-
+            
               <h1>Iniciar Sesión</h1>
+
+              <img src="images/logo.jpeg" width="100%" height="100%">
 
               <div class="form-group" id="result_usuario">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" for="usuario">Usuario: 

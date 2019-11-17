@@ -2,16 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SITFUD</title>
+<title>MAPA</title>
 
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-  <!--Alertas -->
-  <script src="../dist/js/sweetalert-dev.js"></script>
-  <link rel="stylesheet" type="text/css" href="../dist/css/sweetalert.css"/>
+  
 <style>
       html, body {
         height: 100%;
@@ -131,9 +129,9 @@ function toggleBounce() {
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQMZPKy11FSacYTvGO8ZCD9DAKk8bquK0&callback=initMap"></script>
 
-    <!-- jQuery 3 -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

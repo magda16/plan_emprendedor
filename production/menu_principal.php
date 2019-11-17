@@ -30,13 +30,13 @@
                   <li><a><i class="fa fa-folder-o"></i> Emprendedores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="ingreso_emprendedor.php">Agregar</a></li>
-                      <li><a href="#">Ver Listado</a></li>
+                      <li><a href="lista_emprendedores.php">Ver Listado</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-folder-o"></i> Ayudas Recibidas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="ingreso_ayudas_recibidas.php">Agregar</a></li>
-                      <li><a href="#">Ver Listado</a></li>
+                      <li><a href="lista_ayudas_recibidas">Ver Listado</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i>Usuario <span class="fa fa-chevron-down"></span></a>

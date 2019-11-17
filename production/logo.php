@@ -1,3 +1,3 @@
 <div class="navbar nav_title" style="border: 0;">
-    <!-- <a href="index.php" class="site_title"> <img src="" width="100%" height="100%"></a> -->
+     <a href="index.php" class="site_title"> <img src="images/logo.jpeg" width="200%" height="200%"></a> 
 </div>

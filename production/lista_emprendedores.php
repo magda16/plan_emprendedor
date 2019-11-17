@@ -66,7 +66,7 @@ include ("../build/conexion.php");
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h2><i class="fa fa-folder-open-o"></i> Ayudas Recibidas</h2>
+                <h2><i class="fa fa-folder-open-o"></i> Emprendedores</h2>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -76,11 +76,11 @@ include ("../build/conexion.php");
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Lista Ayudas Recibidas</h2>
+                    <h2>Lista Emprendedores</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li><a data-toggle="tooltip" data-placement="top" title="Agregar Ayudas Recibidas" href="ingreso_ayudas_recibidas.php"><i class="fa fa-plus-circle"></i></a>
+                      <li><a data-toggle="tooltip" data-placement="top" title="Agregar Emprendedor" href="ingreso_emprendedor.php"><i class="fa fa-plus-circle"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -96,11 +96,8 @@ include ("../build/conexion.php");
                       <thead>
                         <tr>
                           <th>No.</th>
-                          <th>Nombre Cooperante</th>
-                          <th>Monto ($)</th>
-                          <th>Tipo Ayuda</th>
-                          <th>Fecha Ingreso</th>
                           <th>Empresario</th>
+                          <th>Recursos Humanos</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
@@ -108,23 +105,21 @@ include ("../build/conexion.php");
                         <?php
                          
                         $contador=1;
-                        $stmt= $pdo->prepare("SELECT c.id_cooperante, c.nombre_cooperante, c.monto, c.tipo_ayuda, DATE_FORMAT(c.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido FROM cooperante AS c INNER JOIN emprendedor AS e ON (c.id_emprendedor=e.id_emprendedor)");
+                        $stmt= $pdo->prepare("SELECT * FROM emprendedor");
                         $stmt->execute();
                         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach($result as $lista_cooperante){
+                        foreach($result as $lista_emprendedor){
                              
                               echo "<tr>";
                               echo "<td>" .$contador. "</td>";
-                              echo "<td>" . $lista_cooperante['nombre_cooperante'] . "</td>";
-                              echo "<td>" . $lista_cooperante['monto'] . "</td>";
-                              echo "<td>" . $lista_cooperante['tipo_ayuda'] . "</td>";
-                              echo "<td>" . $lista_cooperante['fecha_ingreso'] . "</td>";
-                              echo "<td>" . $lista_cooperante['nombre'] . " " . $lista_cooperante['apellido'] . "</td>";
+                              echo "<td>" . $lista_emprendedor['nombre'] . " " . $lista_emprendedor['apellido'] . "</td>";
+                              echo "<td>" . $lista_emprendedor['recursos_humanos'] . "</td>";
+                      
                               echo "<td>";
                               
-                                echo "<a class='btn btn-success' onclick='mostrar_ayudas_recibidas(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Mostrar Ayudas Recibidas'><i class='fa fa-eye'></i></a>";
-                                echo "<a class='btn btn-info' onclick='editar_ayudas_recibidas(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Editar Ayudas Recibidas'><i class='fa fa-edit'></i></a>";
-                                echo "<a class='btn btn-danger' onclick='eliminar_ayudas_recibidas(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Eliminar Ayudas Recibidas'><i class='fa fa-trash-o'></i></a>";
+                                echo "<a class='btn btn-success' onclick='mostrar_usuario(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Mostrar Usuario'><i class='fa fa-eye'></i></a>";
+                                echo "<a class='btn btn-info' onclick='editar_usuario(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Editar Usuario'><i class='fa fa-edit'></i></a>";
+                                echo "<a class='btn btn-danger' onclick='eliminar_usuario(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Eliminar Usuario'><i class='fa fa-trash-o'></i></a>";
                              
                               echo "</td>";
                               echo "</tr>";
@@ -133,11 +128,11 @@ include ("../build/conexion.php");
                         ?>
                       </tbody>
                     </table>
-                    <form id="from_editar_ayudas_recibidas" name="from_editar_ayudas_recibidas" action="editar_ayudas_recibidas.php" method="POST">
+                    <form id="from_editar_usuario" name="from_editar_usuario" action="editar_usuario.php" method="POST">
                       <input type="hidden" id="id" name="id">
                     </form>
 
-                    <form id="from_mostrar_ayudas_recibidas" name="from_mostrar_ayudas_recibidas" action="mostrar_ayudas_recibidas.php" target="_blank" method="POST">
+                    <form id="from_mostrar_usuario" name="from_mostrar_usuario" action="mostrar_usuario.php" target="_blank" method="POST">
                       <input type="hidden" id="mostrar" name="mostrar">
                     </form>
                       </div>  
@@ -195,7 +190,7 @@ include ("../build/conexion.php");
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
     <!-- Validaciones Form Usuario -->
-    <script src="../build/js/validaciones/list_ayudas_recibidas.js"></script>
+    <script src="../build/js/validaciones/form_usuario.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>

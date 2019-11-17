@@ -48,61 +48,38 @@
     
       function obtenerResultado(){
         include ("../conexion.php");
-        $id_usuario=$_POST["actualizar"];
-        $nombre=$_POST["nombre"];
-        $apellido=$_POST["apellido"];
-        $dui=$_POST["dui"];
-        $nit=$_POST["nit"];
-        $usuario=$_POST["usuario"];
-        $estado=$_POST["estado"];
-        $clave=$_POST["clave"];
-        $correo=$_POST["correo"];
-        $nivel=$_POST["nivel_e"];
-        $respuesta_secreta="";
+        $id_cooperante=$_POST["actualizar"];
 
-        if(empty($_POST["empresa"])){
-          if($nivel=="Empresa"){
-            $id_empresa=$_POST["id_empresa"];
-          }else{
-            $id_empresa=0;
+        $nombre_cooperante=$_POST["nombre_cooperante"];
+          $monto=$_POST["monto"];
+          
+          $tipo_ayuda=$_POST["tipo_a"];
+          if($_POST["tipo_ayuda"]=!""){
+            $tipo_ayuda=$_POST["tipo_ayuda"];
+          }else if($_POST["otro_tipo_ayuda"]!=""){
+            $tipo_ayuda=$_POST["otro_tipo_ayuda"];
           }
-        } else {
-          $id_empresa=$_POST["empresa"];
-        }
-        
-        if($_POST["oficina"]!=""){
-          $id_oficina=$_POST["oficina"];
-        }else{
-          $id_oficina=$_POST["id_oficina"];
-        }
 
-         
-          $stmt=$pdo->prepare("UPDATE usuarios SET 
-          nombre=:nombre, 
-          apellido=:apellido, 
-          dui=:dui, 
-          nit=:nit, 
-          usuario=:usuario, 
-          clave=:clave, 
-          correo=:correo, 
-          id_oficina=:id_oficina, 
-          estado=:estado, 
-          nivel=:nivel, 
-          id_empresa=:id_empresa, 
-          respuesta_secreta=:respuesta_secreta WHERE id_usuario=:id_usuario");
-          $stmt->bindParam(":nombre",$nombre,PDO::PARAM_STR);
-          $stmt->bindParam(":apellido",$apellido,PDO::PARAM_STR);
-          $stmt->bindParam(":dui",$dui,PDO::PARAM_STR);
-          $stmt->bindParam(":nit",$nit,PDO::PARAM_STR);
-          $stmt->bindParam(":usuario",$usuario,PDO::PARAM_STR);
-          $stmt->bindParam(":clave",$clave,PDO::PARAM_STR);
-          $stmt->bindParam(":correo",$correo,PDO::PARAM_STR);
-          $stmt->bindParam(":id_oficina",$id_oficina,PDO::PARAM_INT);
-          $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
-          $stmt->bindParam(":nivel",$nivel,PDO::PARAM_STR);
-          $stmt->bindParam(":id_empresa",$id_empresa,PDO::PARAM_INT);
-          $stmt->bindParam(":respuesta_secreta",$respuesta_secreta,PDO::PARAM_STR);
-          $stmt->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
+          $fecha_ingres=$_POST["fecha_ingreso"];
+          
+          $id_emprendedor=$_POST["emp"];
+          if($_POST["emprendedor"]!=""){
+            $id_emprendedor=$_POST["emprendedor"];
+          }
+          
+          date_default_timezone_set('America/El_Salvador');
+        
+          $fecha_ingreso=$fecha_ingres;
+          list($dia, $mes, $year)=explode("/", $fecha_ingres);
+          $fecha_ingreso=$year."-".$mes."-".$dia;
+          
+          $stmt=$pdo->prepare("UPDATE cooperante SET nombre_cooperante=:nombre_cooperante, monto=:monto, tipo_ayuda=:tipo_ayuda, fecha_ingreso=:fecha_ingreso, id_emprendedor=:id_emprendedor WHERE id_cooperante=:id_cooperante");
+          $stmt->bindParam(":nombre_cooperante",$nombre_cooperante,PDO::PARAM_STR);
+          $stmt->bindParam(":monto",$monto,PDO::PARAM_STR);
+          $stmt->bindParam(":tipo_ayuda",$tipo_ayuda,PDO::PARAM_STR);
+          $stmt->bindParam(":fecha_ingreso",$fecha_ingreso,PDO::PARAM_STR);
+          $stmt->bindParam(":id_emprendedor",$id_emprendedor,PDO::PARAM_INT);
+          $stmt->bindParam(":id_cooperante",$id_cooperante,PDO::PARAM_INT);
 
           if($stmt->execute()){
             return "Exito";
