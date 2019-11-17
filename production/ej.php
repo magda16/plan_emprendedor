@@ -127,8 +127,9 @@ function toggleBounce() {
 // Carga de la libreria de google maps 
 
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQMZPKy11FSacYTvGO8ZCD9DAKk8bquK0&callback=initMap"></script>
-
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQMZPKy11FSacYTvGO8ZCD9DAKk8bquK0&callback=initMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->

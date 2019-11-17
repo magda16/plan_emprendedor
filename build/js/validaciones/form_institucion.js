@@ -1,20 +1,8 @@
 $(document).ready(function(){
 
-    $("#div_ta").hide();
-    $("#div_mta").hide();
-    $("#div_emp").hide();
+    $("#div_depto").hide();
 
-    //Date picker
-    $('#fecha_ingreso').datepicker({
-        autoclose: true
-    })
-  
-    $.validator.addMethod("numero", function(value, element) {
-        return /^[ 0-9-().,]*$/i.test(value);
-    }, "Ingrese sólo números");
-
-
-    $("#form_ayuda_recibida").validate({
+    $("#form_institucion").validate({
       errorPlacement: function (error, element) {
             $(element).closest('.form-group').find('.help-block').html(error.html());
         },
@@ -26,104 +14,90 @@ $(document).ready(function(){
             $(element).closest('.form-group').find('.help-block').html('');
         },
       rules: {
-        nombre_cooperante: {
+        nombre_institucion: {
           required: true,
           minlength: 3
         },
-        monto: {
-          numero: true,
+        areas_trabajo: {
           required: true,
-          minlength: 2
+          minlength: 3
         }, 
-        tipo_ayuda:{
-          required: true
+        departamento:{
+            required: true,
+            number: true
         },
-        otro_tipo_ayuda: {
-          required: true,
-          minlength: 3
-        },
-        fecha_nacimiento: {
-          required: true
-        },
-        emprendedor:{
-          required: true,
-          number: true
+        municipio:{
+            required: true,
+            number: true
         }
       },
       messages: {
-        nombre_cooperante: {
-          required: "Por favor, ingrese nombre cooperante.",
+        nombre_institucion: {
+          required: "Por favor, ingrese nombre institución.",
           minlength: "Debe ingresar m&iacute;nimo 3 carácteres."
         },
-        monto: {
-          required: "Por favor, ingrese monto.",
-          minlength: "Debe ingresar m&iacute;nimo 2 carácteres."
-        },
-        tipo_ayuda: {
-          required: "Por favor, seleccione tipo ayuda."
-        },  
-        otro_tipo_ayuda: {
-          required: "Por favor, ingrese otro tipo ayuda.",
+        areas_trabajo: {
+          required: "Por favor, ingrese áreas de trabajo.",
           minlength: "Debe ingresar m&iacute;nimo 3 carácteres."
-        },       
-        fecha_ingreso: {
-          required: "Por favor, ingrese fecha de ingreso.",
         },
-        emprendedor: {
-          required: "Por favor, seleccione emprendedor."
+        departamento: {
+            required: "Por favor, seleccione departamento."
+        },
+        municipio: {
+            required: "Por favor, seleccione municipio."
         }
       }
     });
 
-    $('input[id=cta]').on('change', function() {
-      if ($(this).is(':checked') ) {
-          $("#div_mta").show();
-      } else {
-          $("#div_mta").hide();
-      }
-    });
-
-      $("#tipo_ayuda").on("change", function(){
-        if($("#tipo_ayuda").val()==="otro_ta"){
-          $("#div_ta").show();
-        }else{
-          $("#div_ta").hide();
-          $("#otro_tipo_ayuda").val("");
-        }
-      });
-
-      $('input[id=em]').on('change', function() {
-        if ($(this).is(':checked') ) {
-            $("#div_emp").show();
-        } else {
-            $("#div_emp").hide();
-            $("#emprendedor").val("");
-        }
-      });
-
-      $.ajax({
+    $.ajax({
         type: 'POST',
-        url: '../build/sql/lista_emprendedores.php'
+        url: '../build/sql/lista_departamentos.php'
         })
-        .done(function(lista_emprendedores){
-          $('#emprendedor').html(lista_emprendedores)
+        .done(function(lista_departamentos){
+          $('#departamento').html(lista_departamentos)
         })
         .fail(function(){
           alert('Error al cargar la Pagina')
         })
+  
+        $('#departamento').on('change', function(){
+          var id = $('#departamento').val()
+          $.ajax({
+            type: 'POST',
+            url: '../build/sql/lista_municipios.php',
+            data: {'id': id}
+          })
+          .done(function(lista_municipios){
+            $('#municipio').html(lista_municipios)
+          })
+          .fail(function(){
+            alert('Error al cargar la Pagina')
+          })
+        });
+
+        $('input[id=depto]').on('change', function() {
+          if ($(this).is(':checked') ) {
+              $("#div_depto").show();
+          } else {
+              $("#div_depto").hide();
+              $("#departamento").val("");
+              $("#municipio").val("");
+          }
+        });
+    
 
 
   $("#btnguardar").click(function(){
- if($("#form_ayuda_recibida").valid()){
+ if($("#form_institucion").valid()){
   $('#bandera').val("add");
   $.ajax({
     type: 'POST',
-    url: '../build/sql/crud_ayudas_recibidas.php',
-    data: $("#form_ayuda_recibida").serialize()
+    url: '../build/sql/crud_instituciones.php',
+    data: $("#form_institucion").serialize()
   })
   .done(function(resultado_ajax){
     if(resultado_ajax === "Exito"){
-       $("#form_ayuda_recibida")[0].reset();
+       $("#form_institucion")[0].reset();
        $(".form-group").removeClass("has-success").addClass("");
        PNotify.success({
          title: 'Éxito',
@@ -133,7 +107,7 @@ $(document).ready(function(){
        });
     }
     if(resultado_ajax === "Error"){
-     $("#form_ayuda_recibida")[0].reset();
+     $("#form_institucion")[0].reset();
      $(".form-group").removeClass("has-success").addClass("");
      PNotify.error({
        title: 'Error',
@@ -161,12 +135,12 @@ $(document).ready(function(){
  });
 
  $("#btneditar").click(function(){
-   if($("#form_ayuda_recibida").valid()){
+   if($("#form_institucion").valid()){
     $('#bandera').val("edit");
     $.ajax({
       type: 'POST',
-      url: '../build/sql/crud_ayudas_recibidas.php',
-      data: $("#form_ayuda_recibida").serialize()
+      url: '../build/sql/crud_instituciones.php',
+      data: $("#form_institucion").serialize()
     })
     .done(function(resultado_ajax){
       if(resultado_ajax === "Exito"){
@@ -185,7 +159,7 @@ $(document).ready(function(){
                  primary: true,
                  click: function(notice) {
                    notice.close();
-                   location.href='../production/lista_ayudas_recibidas.php';
+                   location.href='../production/lista_instituciones.php';
                  }
                }]
              },
@@ -216,7 +190,7 @@ $(document).ready(function(){
                primary: true,
                click: function(notice) {
                  notice.close();
-                 location.href='../production/lista_ayudas_recibidas.php';
+                 location.href='../production/lista_instituciones.php';
                }
              }]
            },

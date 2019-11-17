@@ -1,6 +1,6 @@
-function mostrar_oficina(id){
+function mostrar_ayudas_recibidas(id){
     $("#mostrar").val(id);
-    $("#from_mostrar_oficina").submit();
+    $("#from_mostrar_ayudas_recibidas").submit();
    }
    
    function editar_ayudas_recibidas(id){
@@ -44,7 +44,7 @@ function mostrar_oficina(id){
     
    }
    
-   function eliminar_oficina(id){
+   function eliminar_ayudas_recibidas(id){
    
     var notice = PNotify.notice({
       title: 'Advertencia',
@@ -75,7 +75,7 @@ function mostrar_oficina(id){
         var bandera = "delete";
         $.ajax({
          type: 'POST',
-         url: '../build/sql/crud_oficinas.php',
+         url: '../build/sql/crud_ayudas_recibidas.php',
          data: {'bandera' : bandera, 'id' : id}
         })
         .done(function(resultado_ajax){
@@ -96,7 +96,7 @@ function mostrar_oficina(id){
                     primary: true,
                     click: function(notice) {
                       notice.close();
-                      location.href='../production/lista_oficinas.php';
+                      location.href='../production/lista_ayudas_recibidas.php';
                     }
                   }]
                 },

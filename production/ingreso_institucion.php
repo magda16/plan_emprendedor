@@ -64,7 +64,7 @@
           <div class="col-sm-12 col-sm-offset-2 col-md-8 col-md-offset-2">
             <div class="page-title">
               <div class="title_left">
-                <h2><i class="fa fa-folder-open-o"></i> Ayudas Recibidas</h2>
+                <h2><i class="fa fa-folder-open-o"></i> Instituciones</h2>
               </div>  
             </div>
             <div class="clearfix"></div>
@@ -74,11 +74,11 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Registro Ayudas Recibidas</h2>
+                    <h2>Registro Institución</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Ayudas Recibidas" href="lista_ayudas_recibidas.php" ><i class="fa fa-list"></i></a>
+                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Instituciones" href="lista_instituciones.php" ><i class="fa fa-list"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -86,73 +86,47 @@
                   <div class="x_content">
                   <br />
                    
-                    <form id="form_ayuda_recibida" name="form_ayuda_recibida" method="POST" class="form-horizontal form-label-left">
+                    <form id="form_institucion" name="form_institucion" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
                       <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre_cooperante">Nombre Cooperante: <span class="required" style="color: #CD5C5C;"> *</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre_institucion">Nombre Institución: <span class="required" style="color: #CD5C5C;"> *</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" class="form-control has-feedback-left" id="nombre_cooperante" name="nombre_cooperante" required="required" placeholder="Ingrese Nombre Cooperante">
+                        <input type="text" class="form-control has-feedback-left" id="nombre_institucion" name="nombre_institucion" required="required" placeholder="Ingrese Nombre Institución">
                         <span class="fa fa-building-o form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <span class="help-block"></span>
                       </div>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="monto">Monto: <span class="required" style="color: #CD5C5C;"> *</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control has-feedback-left" id="monto" name="monto" required="required" placeholder="Ingrese Monto">
-                          <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-                        <span class="help-block"></span>
-                      </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" for="areas_trabajo">Áreas de Trabajo: <span class="required" style="color: #CD5C5C;"> *</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="areas_trabajo" name="areas_trabajo" class="form-control col-md-7 col-xs-12" required="required" placeholder="Ingrese Áreas de Trabajo"></textarea>
+                            </div>
+                            <span class="help-block" ></span>
+                          </div>
+
 
                       <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo Ayuda: <span class="required" style="color: #CD5C5C;"> *</span></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="departamento">Departamento: <span class="required" style="color: #CD5C5C;"> *</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select class="form-control" id="tipo_ayuda" name="tipo_ayuda">
-                              <option selected="selected" value="">Seleccione Tipo Ayuda</option>
-                                <option value="Efectivo">Efectivo</option>
-                                <option value="Materia Prima">Materia Prima</option>
-                                <option value="Apoyo Tecnico">Apoyo Técnico</option>
-                                <option value="otro_ta">Otro</option>
+                              <select class="form-control" id="departamento" name="departamento">
                               </select>
                             </div>
                             <span class="help-block"></span>
                           </div>
-
-                          <div class="form-group" id="div_ta" name="div_ta">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" for="otro_tipo_ayuda">Otro Tipo Ayuda: <span class="required" style="color: #CD5C5C;"> *</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" class="form-control has-feedback-left" id="otro_tipo_ayuda" name="otro_tipo_ayuda" required="required" placeholder="Ingrese Otro Tipo Ayuda">
-                              <span class="fa fa-circle-o form-control-feedback left" aria-hidden="true"></span>
-                            </div>
-                            <span class="help-block"></span>
-                          </div>
-
+                          
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha: día/mes/año <span class="required" style="color: #CD5C5C;"> *</span>
-                            </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                              <input type="text" class="form-control has-feedback-left" id="fecha_ingreso" name="fecha_ingreso" required="required" class="form-control col-md-7 col-xs-12" data-date-end-date = "0d">
-                              <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                            </div>
-                            <span class="help-block"></span>
-                          </div>
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="emprendedor">Emprendedor: <span class="required" style="color: #CD5C5C;"> *</span></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="municipio">Municipio: <span class="required" style="color: #CD5C5C;"> *</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select class="form-control" id="emprendedor" name="emprendedor">
+                              <select class="form-control" id="municipio" name="municipio">
                               </select>
                             </div>
                             <span class="help-block"></span>
                           </div>
-
 
                       <div class="ln_solid"></div>
                         <p style="color:RGB(205, 92, 92);">( * ) Campos Obligatorios.</p>
@@ -197,7 +171,7 @@
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
     <!-- Validaciones Form Oficina -->
-    <script src="../build/js/validaciones/form_ayudas_recibidas.js"></script>
+    <script src="../build/js/validaciones/form_institucion.js"></script>
     <!-- jquery.inputmask -->
     <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 

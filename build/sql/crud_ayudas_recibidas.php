@@ -13,9 +13,9 @@
           $nombre_cooperante=$_POST["nombre_cooperante"];
           $monto=$_POST["monto"];
           $tipo_ayuda=$_POST["tipo_ayuda"];
-            if($_POST["otro_tipo_ayuda"]!=""){
-              $tipo_ayuda=$_POST["otro_tipo_ayuda"];
-            }
+          if($_POST["otro_tipo_ayuda"]!=""){
+            $tipo_ayuda=$_POST["otro_tipo_ayuda"];
+          }
           $fecha_ingres=$_POST["fecha_ingreso"];
           $id_emprendedor=$_POST["emprendedor"];
           $id_usuario=$_POST["id_usuario"];
@@ -53,10 +53,9 @@
         $nombre_cooperante=$_POST["nombre_cooperante"];
           $monto=$_POST["monto"];
           
-          $tipo_ayuda=$_POST["tipo_a"];
-          if($_POST["tipo_ayuda"]=!""){
-            $tipo_ayuda=$_POST["tipo_ayuda"];
-          }else if($_POST["otro_tipo_ayuda"]!=""){
+          
+          $tipo_ayuda=$_POST["tipo_ayuda"];
+          if($_POST["otro_tipo_ayuda"]!=""){
             $tipo_ayuda=$_POST["otro_tipo_ayuda"];
           }
 
@@ -66,6 +65,8 @@
           if($_POST["emprendedor"]!=""){
             $id_emprendedor=$_POST["emprendedor"];
           }
+
+          if($tipo_ayuda==""){ $tipo_ayuda=$_POST["tipo_a"]; } 
           
           date_default_timezone_set('America/El_Salvador');
         
@@ -90,41 +91,15 @@
       
         return $msj;
       }
-  }else if($bandera=="edit_clave"){
-    $msj="Error";
-  
-    function obtenerResultado(){
-      include ("../conexion.php");
-      $id_usuario=$_POST["actualizar"];
-      $clave=$_POST["clave"];
-      $nueva_clave=$_POST["nueva_clave"];
-      
-      
-      
-        $stmt=$pdo->prepare("UPDATE usuarios SET clave=:nueva_clave WHERE clave=:clave AND id_usuario=:id_usuario");
-        $stmt->bindParam(":clave",$clave,PDO::PARAM_STR);
-        $stmt->bindParam(":nueva_clave",$nueva_clave,PDO::PARAM_STR);
-        $stmt->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
-        $stmt->execute();
-        $fila=$stmt->rowCount();
-        if($fila > 0){
-          return "Exito";
-        }else{
-          return "Error";
-        }
-        $stmt->close();
-    
-      return $msj;
-    }
   }else if($bandera=="delete"){
       $msj="Error";
     
       function obtenerResultado(){
           include ("../conexion.php");
-          $id_usuario=$_POST["id"];
+          $id_cooperante=$_POST["id"];
       
-          $stmt=$pdo->prepare("DELETE FROM usuarios WHERE id_usuario=:id_usuario");
-          $stmt->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
+          $stmt=$pdo->prepare("DELETE FROM cooperante WHERE id_cooperante=:id_cooperante");
+          $stmt->bindParam(":id_cooperante",$id_cooperante,PDO::PARAM_INT);
 
           if($stmt->execute()){
             return "Exito";
