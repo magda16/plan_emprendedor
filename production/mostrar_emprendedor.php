@@ -8,7 +8,7 @@ $nivel_usu=$_SESSION['nivel'];
 if(isset($_POST['mostrar'])){
   $id_emprendedor=$_POST['mostrar'];
 
-      $stmt= $pdo->prepare("SELECT e.id_emprendedor, e.institucion, e.responsable, DATE_FORMAT(e.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido, e.dui, e.nit, DATE_FORMAT(e.fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento, e.comunidad, e.canton, e.departamento AS id_departamento, d.nombre AS departamento, e.municipio AS id_municipio, m.nombre As municipio, e.telefono, e.correo, e.profesion, e.nivel_escolar, e.nombre_organizacion, e.actividad_eco, e.tipo_local, DATE_FORMAT(e.fecha_inicio, '%d/%m/%Y') AS fecha_inicio, e.latitud, e.longitud, e.act_eco_prin_de, e.infraestructura, e.equipo, e.productos, e.recursos_humanos, e.perfil_cliente, e.mercado_objetivo, e.competencia_mercado, e.situacion_legal, e.nombre_comercial, e.nit_negocio, e.cuenta_bancaria, e.matricula_comercio, e.factura, e.registro_iva, e.act_eco_prin_sl, e.otra, e.limitaciones FROM emprendedor AS e INNER JOIN departamentos AS d ON (e.departamento=d.id_departamento) INNER JOIN municipios AS m ON (e.municipio=m.id_municipio) WHERE e.id_emprendedor=:id_emprendedor");
+      $stmt= $pdo->prepare("SELECT e.id_emprendedor, e.institucion, e.responsable, DATE_FORMAT(e.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido, e.sexo, e.dui, e.nit, DATE_FORMAT(e.fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento, e.comunidad, e.canton, e.departamento AS id_departamento, d.nombre AS departamento, e.municipio AS id_municipio, m.nombre As municipio, e.telefono, e.correo, e.profesion, e.nivel_escolar, e.nombre_organizacion, e.actividad_eco, e.tipo_local, DATE_FORMAT(e.fecha_inicio, '%d/%m/%Y') AS fecha_inicio, e.latitud, e.longitud, e.act_eco_prin_de, e.infraestructura, e.equipo, e.productos, e.recursos_humanos, e.perfil_cliente, e.mercado_objetivo, e.competencia_mercado, e.situacion_legal, e.nombre_comercial, e.nit_negocio, e.cuenta_bancaria, e.matricula_comercio, e.factura, e.registro_iva, e.act_eco_prin_sl, e.otra, e.limitaciones FROM emprendedor AS e INNER JOIN departamentos AS d ON (e.departamento=d.id_departamento) INNER JOIN municipios AS m ON (e.municipio=m.id_municipio) WHERE e.id_emprendedor=:id_emprendedor");
       $stmt->bindParam(":id_emprendedor",$id_emprendedor,PDO::PARAM_INT);
       $stmt->execute();
       $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -19,6 +19,7 @@ if(isset($_POST['mostrar'])){
           $fecha_ingreso_r=$lista_emprendedor['fecha_ingreso'];
           $nombre_r=$lista_emprendedor['nombre'];
           $apellido_r= $lista_emprendedor['apellido'];
+          $sexo_r=$lista_emprendedor['sexo'];
           $dui_r=$lista_emprendedor['dui'];
           $nit_r=$lista_emprendedor['nit'];
           $fecha_nacimiento_r=$lista_emprendedor['fecha_nacimiento'];
@@ -96,12 +97,6 @@ if(isset($_POST['mostrar'])){
     <!-- bootstrap-progressbar -->
     <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
      
-    <!-- PNotify -->
-    <link href="../vendors/PNotify/dist/PNotifyBrightTheme.css" rel="stylesheet" type="text/css" />
-
-    <!-- bootstrap-datepicker -->
-    <link href="../vendors/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
-
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">
 
@@ -194,7 +189,7 @@ if(isset($_POST['mostrar'])){
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left">Fecha: día/mes/año <span style="color:	#000080;"> '</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left">Fecha Ingreso: día/mes/año <span style="color:	#000080;"> '</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
                           <i class="fa fa-calendar-o"></i>
@@ -230,6 +225,15 @@ if(isset($_POST['mostrar'])){
                         </div>
 
                           <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Sexo: <span style="color:	#000080;"> '</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
+                              <i class="fa fa-user"></i>
+                              <?php if($sexo_r=="Masculino") echo "<label class='control-label'> Masculino </label>";
+                               else echo "<label class='control-label'> Femenino </label>"; ?>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left">DUI: <span style="color:	#000080;"> '</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
@@ -248,7 +252,7 @@ if(isset($_POST['mostrar'])){
                           </div>  
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left">Fecha de Nacimiento: <span style="color:	#000080;"> '</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left">Fecha de Nacimiento: día/mes/año <span style="color:	#000080;"> '</span>
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12 lcolor">
                               <i class="fa fa-calendar-o"></i>
@@ -399,7 +403,7 @@ if(isset($_POST['mostrar'])){
                         </div>
 
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha: día/mes/año <span style="color:	#000080;"> '</span></label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio: día/mes/año <span style="color:	#000080;"> '</span></label>
                           <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
                             <i class="fa fa-calendar-o"></i>
                             <label class="control-label  "><?php echo $fecha_inicio_r; ?> </label>
@@ -728,23 +732,11 @@ if(isset($_POST['mostrar'])){
     <!-- bootstrap-progressbar -->
     <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
   
-    
-    <!-- PNotify -->
-    <script src="../vendors/PNotify/dist/iife/PNotify.js"></script>
-    <script src="../vendors/PNotify/dist/iife/PNotifyButtons.js"></script>
-    <script src="../vendors/PNotify/dist/iife/PNotifyConfirm.js"></script>
-    <script src="../vendors/PNotify/dist/iife/PNotifyMobile.js"></script>
-
-    <!-- bootstrap-datepicker -->
-    <script src="../vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
-    <!-- Validaciones Form Demandante -->
+    <!-- Validaciones Form Emprendedor -->
     <script src="../build/js/validaciones/form_emprendedor.js"></script>
-    <!-- jquery.inputmask -->
-    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-
+   
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>
   </body>

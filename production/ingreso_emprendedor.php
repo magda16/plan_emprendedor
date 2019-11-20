@@ -127,7 +127,7 @@ $nivel_usu=$_SESSION['nivel'];
                           </div>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha: día/mes/año
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha Ingreso: día/mes/año
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <input type="text" class="form-control has-feedback-left" id="fecha_ingreso" name="fecha_ingreso" required="required" class="form-control col-md-7 col-xs-12" data-date-end-date = "0d">
@@ -163,6 +163,16 @@ $nivel_usu=$_SESSION['nivel'];
                               <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                             </div>
                             <span class="help-block" ></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Sexo: </label>
+                            <div class="radio col-md-6 col-sm-6 col-xs-12">
+                              <label>
+                              <input type="radio" class=" " id="sexo" name="sexo" value="Masculino" checked> Masculino </label>
+                              <label>
+                              <input type="radio" class=" " id="sexo" name="sexo" value="Femenino"> Femenino </label>
+                            </div>
                           </div>
 
                           <div class="form-group">
@@ -387,7 +397,7 @@ $nivel_usu=$_SESSION['nivel'];
                           </div>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha: día/mes/año
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Inicio: día/mes/año
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <input type="text" class="form-control has-feedback-left" id="fecha_inicio" name="fecha_inicio" required="required" class="form-control col-md-7 col-xs-12" data-date-end-date = "0d">
@@ -586,8 +596,8 @@ $nivel_usu=$_SESSION['nivel'];
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select class="form-control" id="situacion_legal" name="situacion_legal">
                               <option selected="selected" value="">Seleccione Tipo Situacón Legal</option>
-                                <option value="Propio">Formal</option>
-                                <option value="Arrendado">Informal</option>
+                                <option value="Formal">Formal</option>
+                                <option value="Informal">Informal</option>
                               </select>
                             </div>
                             <span class="help-block"></span>
@@ -625,7 +635,7 @@ $nivel_usu=$_SESSION['nivel'];
 
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="matricula_comercio">Matrícula de Comercio:
-                            </label>
+                            </label><br />
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <input type="text" class="form-control has-feedback-left" id="matricula_comercio" name="matricula_comercio" required="required" placeholder="Ingrese Matrícula de Comercio">
                               <span class="fa fa-list-alt form-control-feedback left" aria-hidden="true"></span>
@@ -744,7 +754,7 @@ $nivel_usu=$_SESSION['nivel'];
 
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
-    <!-- Validaciones Form Demandante -->
+    <!-- Validaciones Form Emprendedor -->
     <script src="../build/js/validaciones/form_emprendedor.js"></script>
     <!-- jquery.inputmask -->
     <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

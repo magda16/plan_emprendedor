@@ -8,7 +8,7 @@ $nivel_usu=$_SESSION['nivel'];
 if(isset($_POST['id'])){
   $id_emprendedor=$_POST['id'];
 
-      $stmt= $pdo->prepare("SELECT e.id_emprendedor, e.institucion, e.responsable, DATE_FORMAT(e.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido, e.dui, e.nit, DATE_FORMAT(e.fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento, e.comunidad, e.canton, e.departamento AS id_departamento, d.nombre AS departamento, e.municipio AS id_municipio, m.nombre As municipio, e.telefono, e.correo, e.profesion, e.nivel_escolar, e.nombre_organizacion, e.actividad_eco, e.tipo_local, DATE_FORMAT(e.fecha_inicio, '%d/%m/%Y') AS fecha_inicio, e.latitud, e.longitud, e.act_eco_prin_de, e.infraestructura, e.equipo, e.productos, e.recursos_humanos, e.perfil_cliente, e.mercado_objetivo, e.competencia_mercado, e.situacion_legal, e.nombre_comercial, e.nit_negocio, e.cuenta_bancaria, e.matricula_comercio, e.factura, e.registro_iva, e.act_eco_prin_sl, e.otra, e.limitaciones FROM emprendedor AS e INNER JOIN departamentos AS d ON (e.departamento=d.id_departamento) INNER JOIN municipios AS m ON (e.municipio=m.id_municipio) WHERE e.id_emprendedor=:id_emprendedor");
+      $stmt= $pdo->prepare("SELECT e.id_emprendedor, e.institucion, e.responsable, DATE_FORMAT(e.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido, e.sexo, e.dui, e.nit, DATE_FORMAT(e.fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento, e.comunidad, e.canton, e.departamento AS id_departamento, d.nombre AS departamento, e.municipio AS id_municipio, m.nombre As municipio, e.telefono, e.correo, e.profesion, e.nivel_escolar, e.nombre_organizacion, e.actividad_eco, e.tipo_local, DATE_FORMAT(e.fecha_inicio, '%d/%m/%Y') AS fecha_inicio, e.latitud, e.longitud, e.act_eco_prin_de, e.infraestructura, e.equipo, e.productos, e.recursos_humanos, e.perfil_cliente, e.mercado_objetivo, e.competencia_mercado, e.situacion_legal, e.nombre_comercial, e.nit_negocio, e.cuenta_bancaria, e.matricula_comercio, e.factura, e.registro_iva, e.act_eco_prin_sl, e.otra, e.limitaciones FROM emprendedor AS e INNER JOIN departamentos AS d ON (e.departamento=d.id_departamento) INNER JOIN municipios AS m ON (e.municipio=m.id_municipio) WHERE e.id_emprendedor=:id_emprendedor");
       $stmt->bindParam(":id_emprendedor",$id_emprendedor,PDO::PARAM_INT);
       $stmt->execute();
       $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -19,6 +19,7 @@ if(isset($_POST['id'])){
           $fecha_ingreso_r=$lista_emprendedor['fecha_ingreso'];
           $nombre_r=$lista_emprendedor['nombre'];
           $apellido_r= $lista_emprendedor['apellido'];
+          $sexo_r=$lista_emprendedor['sexo'];
           $dui_r=$lista_emprendedor['dui'];
           $nit_r=$lista_emprendedor['nit'];
           $fecha_nacimiento_r=$lista_emprendedor['fecha_nacimiento'];
@@ -203,7 +204,7 @@ if(isset($_POST['id'])){
                           </div>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha: día/mes/año
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha Ingreso: día/mes/año
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <input type="text" class="form-control has-feedback-left" id="fecha_ingreso" name="fecha_ingreso" required="required" class="form-control col-md-7 col-xs-12" data-date-end-date = "0d" value="<?php echo $fecha_ingreso_r; ?>">
@@ -239,6 +240,16 @@ if(isset($_POST['id'])){
                               <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                             </div>
                             <span class="help-block" ></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Sexo: </label>
+                            <div class="radio col-md-6 col-sm-6 col-xs-12">
+                              <label>
+                              <input type="radio" class=" " id="sexo" name="sexo" value="Masculino" <?php if($sexo_r=="Masculino") echo "checked"; ?> > Masculino </label>
+                              <label>
+                              <input type="radio" class=" " id="sexo" name="sexo" value="Femenino" <?php if($sexo_r=="Femenino") echo "checked"; ?> > Femenino </label>
+                            </div>
                           </div>
 
                           <div class="form-group">
@@ -559,7 +570,7 @@ if(isset($_POST['id'])){
                           </div>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha: día/mes/año
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Inicio: día/mes/año
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                               <input type="text" class="form-control has-feedback-left" id="fecha_inicio" name="fecha_inicio" required="required" class="form-control col-md-7 col-xs-12" data-date-end-date = "0d" value="<?php echo $fecha_inicio_r; ?>">
@@ -797,7 +808,7 @@ if(isset($_POST['id'])){
 
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="matricula_comercio">Matrícula de Comercio:
-                            </label>
+                            </label><br />
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <input type="text" class="form-control has-feedback-left" id="matricula_comercio" name="matricula_comercio" required="required" placeholder="Ingrese Matrícula de Comercio" value="<?php echo $matricula_comercio_r; ?>">
                               <span class="fa fa-list-alt form-control-feedback left" aria-hidden="true"></span>
@@ -916,7 +927,7 @@ if(isset($_POST['id'])){
 
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
-    <!-- Validaciones Form Demandante -->
+    <!-- Validaciones Form Emprendedor -->
     <script src="../build/js/validaciones/form_emprendedor.js"></script>
     <!-- jquery.inputmask -->
     <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

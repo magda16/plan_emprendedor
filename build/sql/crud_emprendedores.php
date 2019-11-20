@@ -15,6 +15,7 @@
           
            $nombre=$_POST["nombre"];
            $apellido=$_POST["apellido"];
+           $sexo=$_POST["sexo"];
            $dui=$_POST["dui"];
            $nit=$_POST["nit"];
            $fecha_nacimiento=$_POST["fecha_nacimiento"];
@@ -131,9 +132,9 @@
           }
 
         
-          $stmt=$pdo->prepare("INSERT INTO emprendedor (id_emprendedor, institucion, responsable, fecha_ingreso, nombre, apellido, dui, nit, fecha_nacimiento, comunidad, canton, departamento, municipio, telefono, correo, profesion, nivel_escolar, nombre_organizacion, actividad_eco, tipo_local, fecha_inicio, latitud, 
+          $stmt=$pdo->prepare("INSERT INTO emprendedor (id_emprendedor, institucion, responsable, fecha_ingreso, nombre, apellido, sexo, dui, nit, fecha_nacimiento, comunidad, canton, departamento, municipio, telefono, correo, profesion, nivel_escolar, nombre_organizacion, actividad_eco, tipo_local, fecha_inicio, latitud, 
           longitud, act_eco_prin_de, infraestructura, equipo, productos, recursos_humanos, perfil_cliente, mercado_objetivo, competencia_mercado, situacion_legal, nombre_comercial, nit_negocio, cuenta_bancaria, matricula_comercio, factura, registro_iva, act_eco_prin_sl, otra, limitaciones, estado, id_usuario)
-          VALUES (:id_emprendedor, :institucion, :responsable, :fecha_ingres, :nombre, :apellido, :dui, :nit, :fecha_nac, :comunidad, :canton, :departamento, :municipio, :telefono, :correo, :profesion, :nivel_escolar, :nombre_organizacion, :actividad_eco, :tipo_local, :fecha_inici, :latitud, 
+          VALUES (:id_emprendedor, :institucion, :responsable, :fecha_ingres, :nombre, :apellido, :sexo, :dui, :nit, :fecha_nac, :comunidad, :canton, :departamento, :municipio, :telefono, :correo, :profesion, :nivel_escolar, :nombre_organizacion, :actividad_eco, :tipo_local, :fecha_inici, :latitud, 
           :longitud, :act_eco_prin_de, :infraestructura, :equipo, :productos, :recursos_humanos, :perfil_cliente, :mercado_objetivo, :competencia_mercado, :situacion_legal, :nombre_comercial, :nit_negocio, :cuenta_bancaria, :matricula_comercio, :factura, :registro_iva, :act_eco_prin_sl, :otra, :limitaciones, :estado, :id_usuario)");
           $stmt->bindParam(":id_emprendedor",$id_emprendedor,PDO::PARAM_INT);
           $stmt->bindParam(":institucion",$institucion,PDO::PARAM_STR);
@@ -141,6 +142,7 @@
           $stmt->bindParam(":fecha_ingres",$fecha_ingres,PDO::PARAM_STR);
           $stmt->bindParam(":nombre",$nombre,PDO::PARAM_STR);
           $stmt->bindParam(":apellido",$apellido,PDO::PARAM_STR);
+          $stmt->bindParam(":sexo",$sexo,PDO::PARAM_STR);
           $stmt->bindParam(":dui",$dui,PDO::PARAM_STR);
           $stmt->bindParam(":nit",$nit,PDO::PARAM_STR);
           $stmt->bindParam(":fecha_nac",$fecha_nac,PDO::PARAM_STR);
@@ -210,6 +212,7 @@
            
             $nombre=$_POST["nombre"];
             $apellido=$_POST["apellido"];
+            $sexo=$_POST["sexo"];
             $dui=$_POST["dui"];
             $nit=$_POST["nit"];
             $fecha_nacimiento=$_POST["fecha_nacimiento"];
@@ -317,12 +320,13 @@
            list($dia, $mes, $year)=explode("/", $fecha_inicio);
            $fecha_inici=$year."-".$mes."-".$dia;
 
-          $stmt=$pdo->prepare("UPDATE emprendedor SET institucion=:institucion, responsable=:responsable, fecha_ingreso=:fecha_ingres, nombre=:nombre, apellido=:apellido, dui=:dui, nit=:nit, fecha_nacimiento=:fecha_nac, comunidad=:comunidad, canton=:canton, departamento=:departamento, municipio=:municipio, telefono=:telefono, correo=:correo, profesion=:profesion, nivel_escolar=:nivel_escolar, nombre_organizacion=:nombre_organizacion, actividad_eco=:actividad_eco, tipo_local=:tipo_local, fecha_inicio=:fecha_inici, latitud=:latitud, longitud=:longitud, act_eco_prin_de=:act_eco_prin_de, infraestructura=:infraestructura, equipo=:equipo, productos=:productos, recursos_humanos=:recursos_humanos, perfil_cliente=:perfil_cliente, mercado_objetivo=:mercado_objetivo, competencia_mercado=:competencia_mercado, situacion_legal=:situacion_legal, nombre_comercial=:nombre_comercial, nit_negocio=:nit_negocio, cuenta_bancaria=:cuenta_bancaria, matricula_comercio=:matricula_comercio, factura=:factura, registro_iva=:registro_iva, act_eco_prin_sl=:act_eco_prin_sl, otra=:otra, limitaciones=:limitaciones WHERE id_emprendedor=:id_emprendedor");
+          $stmt=$pdo->prepare("UPDATE emprendedor SET institucion=:institucion, responsable=:responsable, fecha_ingreso=:fecha_ingres, nombre=:nombre, apellido=:apellido, sexo=:sexo, dui=:dui, nit=:nit, fecha_nacimiento=:fecha_nac, comunidad=:comunidad, canton=:canton, departamento=:departamento, municipio=:municipio, telefono=:telefono, correo=:correo, profesion=:profesion, nivel_escolar=:nivel_escolar, nombre_organizacion=:nombre_organizacion, actividad_eco=:actividad_eco, tipo_local=:tipo_local, fecha_inicio=:fecha_inici, latitud=:latitud, longitud=:longitud, act_eco_prin_de=:act_eco_prin_de, infraestructura=:infraestructura, equipo=:equipo, productos=:productos, recursos_humanos=:recursos_humanos, perfil_cliente=:perfil_cliente, mercado_objetivo=:mercado_objetivo, competencia_mercado=:competencia_mercado, situacion_legal=:situacion_legal, nombre_comercial=:nombre_comercial, nit_negocio=:nit_negocio, cuenta_bancaria=:cuenta_bancaria, matricula_comercio=:matricula_comercio, factura=:factura, registro_iva=:registro_iva, act_eco_prin_sl=:act_eco_prin_sl, otra=:otra, limitaciones=:limitaciones WHERE id_emprendedor=:id_emprendedor");
            $stmt->bindParam(":institucion",$institucion,PDO::PARAM_STR);
            $stmt->bindParam(":responsable",$responsable,PDO::PARAM_STR);
            $stmt->bindParam(":fecha_ingres",$fecha_ingres,PDO::PARAM_STR);
            $stmt->bindParam(":nombre",$nombre,PDO::PARAM_STR);
            $stmt->bindParam(":apellido",$apellido,PDO::PARAM_STR);
+           $stmt->bindParam(":sexo",$sexo,PDO::PARAM_STR);
            $stmt->bindParam(":dui",$dui,PDO::PARAM_STR);
            $stmt->bindParam(":nit",$nit,PDO::PARAM_STR);
            $stmt->bindParam(":fecha_nac",$fecha_nac,PDO::PARAM_STR);
