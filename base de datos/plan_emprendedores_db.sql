@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 17-11-2019 a las 22:34:08
+-- Tiempo de generación: 20-11-2019 a las 01:59:20
 -- Versión del servidor: 5.7.21
 -- Versión de PHP: 5.6.35
 
@@ -130,15 +130,19 @@ CREATE TABLE IF NOT EXISTS `emprendedor` (
   `otra` text COLLATE utf8_spanish_ci NOT NULL,
   `limitaciones` text COLLATE utf8_spanish_ci NOT NULL,
   `id_usuario` int(11) NOT NULL,
+  `estado` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_emprendedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `emprendedor`
 --
 
-INSERT INTO `emprendedor` (`id_emprendedor`, `institucion`, `responsable`, `fecha_ingreso`, `nombre`, `apellido`, `dui`, `nit`, `fecha_nacimiento`, `comunidad`, `canton`, `departamento`, `municipio`, `telefono`, `correo`, `profesion`, `nivel_escolar`, `nombre_organizacion`, `actividad_eco`, `tipo_local`, `fecha_inicio`, `latitud`, `longitud`, `act_eco_prin_de`, `infraestructura`, `equipo`, `productos`, `recursos_humanos`, `perfil_cliente`, `mercado_objetivo`, `competencia_mercado`, `situacion_legal`, `nombre_comercial`, `nit_negocio`, `cuenta_bancaria`, `matricula_comercio`, `factura`, `registro_iva`, `act_eco_prin_sl`, `otra`, `limitaciones`, `id_usuario`) VALUES
-(1, 'ABC', 'Luis Escamilla', '2019-11-04', 'Margarita ConcepciÃ³n', 'Beltran Ramirez', '75963524-1', '1004-789655-889-9', '2000-02-15', 'Local', 'Santa Lucia', '11', '199', '[\"7896-8574\"]', 'margarita@gmail.com', 'secretaria', 'bachiller', 'No', 'administracion', 'Propio', '2019-11-13', 13.649320265505045, -88.83139876331785, 'oficinista', 'propia', 'propio', 'administracion', 'propios', 'afasdfds', 'afgsdfg', 'fdvxdfvdf', 'Arrendado', '789999', '1544-615268-665-1', '05421655', '2365555', '2565', '65655', '51656hbzfv', 'nnbdfjvhbsjdfhbv', 'hb xjhbvshdfvbsdfh', 1);
+INSERT INTO `emprendedor` (`id_emprendedor`, `institucion`, `responsable`, `fecha_ingreso`, `nombre`, `apellido`, `dui`, `nit`, `fecha_nacimiento`, `comunidad`, `canton`, `departamento`, `municipio`, `telefono`, `correo`, `profesion`, `nivel_escolar`, `nombre_organizacion`, `actividad_eco`, `tipo_local`, `fecha_inicio`, `latitud`, `longitud`, `act_eco_prin_de`, `infraestructura`, `equipo`, `productos`, `recursos_humanos`, `perfil_cliente`, `mercado_objetivo`, `competencia_mercado`, `situacion_legal`, `nombre_comercial`, `nit_negocio`, `cuenta_bancaria`, `matricula_comercio`, `factura`, `registro_iva`, `act_eco_prin_sl`, `otra`, `limitaciones`, `id_usuario`, `estado`) VALUES
+(1, 'ABC', 'Luis Escamilla', '2019-11-04', 'Margarita ConcepciÃ³n', 'Beltran Ramirez', '75963524-1', '1004-789655-889-9', '2000-02-15', 'Local', 'Santa Lucia', '11', '199', '[\"7896-8574\"]', 'margarita@gmail.com', 'secretaria', 'bachiller', 'No', 'administracion', 'Propio', '2019-11-13', 13.649320265505045, -88.83139876331785, 'oficinista', 'propia', 'propio', 'administracion', 'propios', 'afasdfds', 'afgsdfg', 'fdvxdfvdf', 'Arrendado', '789999', '1544-615268-665-1', '05421655', '2365555', '2565', '65655', '51656hbzfv', 'nnbdfjvhbsjdfhbv', 'hb xjhbvshdfvbsdfh', 1, 'Inactivo'),
+(2, 'ABCD1', 'Sofia Escalante1', '2019-10-28', 'Amilcar Ernesto1', 'Vega Duran1', '78593362-1', '1005-896859-895-1', '1920-07-17', 'cfvghbndcfgbn1', 'dfghdfgh1', '11', '208', '[\"7859-6857\",\"6985-7481\"]', 'hgdhg1@gmail.com', 'dfgsdf1', 'gsdfgsdfg1', 'gyjrdytju', 'SERVICIOS TECNICOS', 'Arrendado', '2019-11-04', 13.645327137013625, -88.78573683704832, 'adsfgsdf1', 'sadfasdf1', 'asdfsdf1', 'sadfsadf1', 'dfsag1', 'sadafgs1', 'dfgsdg1', 'asdddgsdfg1', 'Informal', 'asdfgsadf1', '4654-653163-213-1', '51621', '', '65136121', '57858751', 'dfgsdfgsd1', 'fgsdfgsdfg1', 'sdfgsdfgsdfgsdf1', 1, 'Activo'),
+(3, 'fgdchgsd', 'Iris Garcia', '2019-11-04', 'Hector', 'Hernandez', '78968554-7', '1005-896355-695-9', '1989-06-13', 'adfg', 'dsfgdfg', '1', '2', '[\"7896-8574\"]', 'dfgsdfg@gmail.com', 'dcsd', 'sdcsdc', 'No', 'PECES', 'Arrendado', '2019-11-05', 13.645066486590691, -88.78511456455686, 'dfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'dfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'Arrendado', 'sdfgsdfg', '4356-345634-563-4', '5463456', '34563456', '3456', '3456', '34563456', '34563456', '34563456', 1, 'Activo'),
+(4, 'insti', 'Estela Rivas', '2019-11-11', 'Juan Jose', 'Martinez', '78965325-6', '1005-896325-595-5', '1990-06-12', 'comu', 'canton', '3', '23', '[\"7896-8574\"]', 'cfcff@gmail.com', 'fcdxfgcdwfg', 'fcsfgcgfsd', 'No', 'PECES', 'Arrendado', '2019-11-12', 13.8888888, -88.858888, 'eqfrgwerg', 'wergwer', 'gwertwert', 'wertwert', 'wertertw', 'wertwert', 'wretwertwer', 'wertwertwer', 'Arrendado', 'yhgvwegrvf', '1444-841146-516-5', '5461252', '45548989', '4152465', '175424', '6826', '428502', 'wregwerg', 1, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -155,14 +159,17 @@ CREATE TABLE IF NOT EXISTS `financiamiento` (
   `otro` decimal(10,2) NOT NULL,
   `id_emprendedor` int(11) NOT NULL,
   PRIMARY KEY (`id_financiamiento`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `financiamiento`
 --
 
 INSERT INTO `financiamiento` (`id_financiamiento`, `propio`, `credito`, `sub_vencion`, `otro`, `id_emprendedor`) VALUES
-(1, '100.00', '0.00', '0.00', '0.00', 1);
+(1, '100.00', '0.00', '0.00', '0.00', 1),
+(2, '43.00', '9.00', '10.00', '9.00', 2),
+(3, '80.00', '0.00', '0.00', '0.00', 3),
+(4, '10.00', '0.00', '0.00', '0.00', 4);
 
 -- --------------------------------------------------------
 

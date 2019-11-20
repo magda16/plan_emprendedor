@@ -131,15 +131,15 @@ $nivel_usu=$_SESSION['nivel'];
                         <span class="help-block"></span>
                       </div>
 
-                      <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo Ayuda: <span style="color:	#000080;"> '</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
-                              <i class="fa fa-circle-o"></i>
-                              <label class="control-label  "><?php echo $tipo_ayuda_r; ?> </label>
-                            </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo Ayuda: <span style="color:	#000080;"> '</span></label>
+                          <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
+                            <i class="fa fa-circle-o"></i>
+                            <label class="control-label  "><?php echo $tipo_ayuda_r; ?> </label>
                           </div>
+                        </div>
 
-                          <div class="form-group">
+                        <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" >¿Desea Cambiar Tipo Ayuda?
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">

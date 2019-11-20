@@ -132,7 +132,7 @@ $nivel_usu=$_SESSION['nivel'];
                         <span class="help-block" ></span>
                       </div>
 
-                      <div class="form-group">
+                        <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Departamento: <span style="color:	#000080;"> '</span></label>
                           <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
                             <i class="fa fa-globe"></i>

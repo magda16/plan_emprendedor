@@ -4,13 +4,18 @@ $(document).ready(function(){
   
   
   $("#div_no").hide();
+  $("#div_ae").hide();
   $("#div_tl").hide();
+  $("#div_depto").hide();
+  $("#div_telef").hide();
+  $("#div_mtl").hide();
+  $("#div_mae").hide();
  
   var current = 1,current_step,next_step,steps;
   steps = $("fieldset").length;
   
   $(".siguiente").click(function(){
-   // if($("#form_demandante").valid()){
+   // if($("#form_emprendedor").valid()){
     current_step = $(this).parent();
     next_step = $(this).parent().next();
     next_step.show();
@@ -61,7 +66,7 @@ $(document).ready(function(){
     return this.optional(element) || /^\d{4}-\d{4}$/.test(value);
   }, "Por favor, digite teléfono válido");
 
-  $("#form_demandante").validate({
+  $("#form_emprendedor").validate({
     errorPlacement: function (error, element) {
           $(element).closest('.form-group').find('.help-block').html(error.html());
       },
@@ -243,6 +248,36 @@ $(document).ready(function(){
       }  
     });
 
+    $('input[id=depto]').on('change', function() {
+      if ($(this).is(':checked') ) {
+          $("#div_depto").show();
+      } else {
+          $("#div_depto").hide();
+          $("#departamento").val("");
+          $("#municipio").val("");
+      }
+    });
+
+    $("#actividad_eco").on("change", function(){
+      if($("#actividad_eco").val()==="otra_ae"){
+        $("#div_ae").show();
+      }else{
+        $("#div_ae").hide();
+        $("#otra_actividad_eco").val("");
+      }
+    });
+
+    $('input[id=cae]').on('change', function() {
+      if ($(this).is(':checked') ) {
+          $("#div_mae").show();
+      } else {
+          $("#div_mae").hide();
+          $("#actividad_eco").val("");
+          $("#div_ae").hide();
+          $("#otra_actividad_eco").val("");
+      }
+    });
+
     $("#tipo_local").on("change", function(){
       if($("#tipo_local").val()==="otro_tl"){
         $("#div_tl").show();
@@ -252,24 +287,27 @@ $(document).ready(function(){
       }
     });
 
+    $('input[id=ctl]').on('change', function() {
+      if ($(this).is(':checked') ) {
+          $("#div_mtl").show();
+      } else {
+          $("#div_mtl").hide();
+          $("#tipo_local").val("");
+          $("#div_tl").hide();
+          $("#otro_tipo_local").val("");
+      }
+    });
+
     $('#fi_propio').on('change', function(){
       var sum=0
       var p = parseFloat($('#fi_propio').val());
       var c = parseFloat($('#fi_credito').val());
       var s = parseFloat($('#fi_sub_vencion').val());
       var o = parseFloat($('#fi_otro').val());
-      if(isNaN(p)){
-        p=0;
-      }
-      if(isNaN(c)){
-        c=0;	
-      }
-      if(isNaN(s)){
-        s=0;	
-      }
-      if(isNaN(o)){
-        o=0;	
-      }
+        if(isNaN(p)){ p=0; }
+        if(isNaN(c)){ c=0; }
+        if(isNaN(s)){ s=0; }
+        if(isNaN(o)){ o=0; }
       sum = p + c + s + o;
       $(".total").text(sum);
   });
@@ -279,18 +317,10 @@ $(document).ready(function(){
         var c = parseFloat($('#fi_credito').val());
         var s = parseFloat($('#fi_sub_vencion').val());
         var o = parseFloat($('#fi_otro').val());
-        if(isNaN(p)){
-          p=0;
-        }
-        if(isNaN(c)){
-          c=0;	
-        }
-        if(isNaN(s)){
-          s=0;	
-        }
-        if(isNaN(o)){
-          o=0;	
-        }
+        if(isNaN(p)){ p=0; }
+        if(isNaN(c)){ c=0; }
+        if(isNaN(s)){ s=0; }
+        if(isNaN(o)){ o=0; }
         sum = p + c + s + o;
         $(".total").text(sum);
     });
@@ -301,18 +331,10 @@ $(document).ready(function(){
         var c = parseFloat($('#fi_credito').val());
         var s = parseFloat($('#fi_sub_vencion').val());
         var o = parseFloat($('#fi_otro').val());
-        if(isNaN(p)){
-          p=0;
-        }
-        if(isNaN(c)){
-          c=0;	
-        }
-        if(isNaN(s)){
-          s=0;	
-        }
-        if(isNaN(o)){
-          o=0;	
-        }
+        if(isNaN(p)){ p=0; }
+        if(isNaN(c)){ c=0; }
+        if(isNaN(s)){ s=0; }
+        if(isNaN(o)){ o=0; }
         sum = p + c + s + o;
         $(".total").text(sum);
     });
@@ -323,25 +345,31 @@ $(document).ready(function(){
         var c = parseFloat($('#fi_credito').val());
         var s = parseFloat($('#fi_sub_vencion').val());
         var o = parseFloat($('#fi_otro').val());
-        if(isNaN(p)){
-          p=0;
-        }
-        if(isNaN(c)){
-          c=0;	
-        }
-        if(isNaN(s)){
-          s=0;	
-        }
-        if(isNaN(o)){
-          o=0;	
-        }
+        if(isNaN(p)){ p=0; }
+        if(isNaN(c)){ c=0; }
+        if(isNaN(s)){ s=0; }
+        if(isNaN(o)){ o=0; }
         sum = p + c + s + o;
         $(".total").text(sum);
     });
 
+    if($("#fi_propio").val()!="" || $("#fi_credito").val()!="" || $("#fi_sub_vencion").val()!="" || $("#fi_otro").val()!=""){
+      var sum=0
+        var p = parseFloat($('#fi_propio').val());
+        var c = parseFloat($('#fi_credito').val());
+        var s = parseFloat($('#fi_sub_vencion').val());
+        var o = parseFloat($('#fi_otro').val());
+        if(isNaN(p)){ p=0; }
+        if(isNaN(c)){ c=0; }
+        if(isNaN(s)){ s=0; }
+        if(isNaN(o)){ o=0; }
+        sum = p + c + s + o;
+        $(".total").text(sum);
+    }
 
-    /*if($('#fecha').val()!=""){
-      var fecha=$('#fecha').val();
+
+    if($('#fecha_nacimiento').val()!=""){
+      var fecha=$('#fecha_nacimiento').val();
       var ed = calculateAge(fecha);
         if(ed>=14 && ed<=100){
           $(".edad").text(ed + " años");
@@ -349,11 +377,30 @@ $(document).ready(function(){
           $('#error_e').removeClass('has-error').addClass('has-success');
         }else{
             $(".edad").text("");
-            $("#fecha").val("")
+            $("#fecha_nacimiento").val("")
             $("#error").text("Fecha Incorrecta");
             $('#error_e').removeClass('has-success').addClass('has-error');
         }  
-    }*/
+    }
+
+    if($("#nombre_organizacion").val()!=""){
+      if($("#nombre_organizacion").val()!="No"){
+          $("#div_no").show();
+      }
+    }
+
+    $("input[id='inscrito_organizacion']").on("change", function() {
+      if ($(this).is(':checked') && $(this).val()=="Si") {
+        $("#nombre_organizacion").val("");
+        $("#div_no").show();
+        if($("#dno").val()!="No"){
+          $("#nombre_organizacion").val($("#dno").val());
+        }
+      } else {
+        $("#div_no").hide();
+        $("#nombre_organizacion").val("");
+      }
+    });
 
      $.ajax({
       type: 'POST',
@@ -395,52 +442,15 @@ $(document).ready(function(){
         if(cont2==4){
           $("#a_t").hide();
         }
-      });
-
-     
-
-    $("input[id='inscrito_organizacion']").on("change", function() {
-      if ($(this).is(':checked') && $(this).val()=="Si") {
-        $("#nombre_organizacion").val("");
-        $("#div_no").show();
-       /* if($("#dvp").val()!="No"){
-          $("#detalle_vp").val($("#dvp").val());
-        }*/
-      } else {
-        $("#div_no").hide();
-        $("#nombre_organizacion").val("");
-      }
-    });
-
-    
-
-    $('input[type=file]').on('change', function() {
-          var fileSize = this.files[0].size;
-        
-          if(fileSize > 2000000){
-            $('#cu_error').text("El archivo no debe superar 2MB");
-            $('#dcu_error').removeClass('has-success').addClass('has-error');
-            this.value = '';
-            this.files[0].name = '';
-          }else{
-            $('#cu_error').text("");
-            $('#dcu_error').removeClass('has-error').addClass('has-success');
-          }
-    });
+      });     
 
      $("#btnguardar").click(function(){
-      if($("#form_demandante").valid()){
+      if($("#form_emprendedor").valid()){
           $("#bandera").val("add");
-          var formData = new FormData($("#form_demandante")[0]);
           $.ajax({
             type: 'POST',
             url: '../build/sql/crud_emprendedores.php',
-            //datos del formulario
-            data: formData,
-            //necesario para subir archivos via ajax
-            cache: false,
-            contentType: false,
-            processData: false,
+            data: $("#form_emprendedor").serialize()
           })
           .done(function(resultado_ajax){
             if(resultado_ajax === "Exito"){
@@ -521,19 +531,13 @@ $(document).ready(function(){
         
 
          $("#btneditar").click(function(){
-          if($("#form_demandante").valid()){
+          if($("#form_emprendedor").valid()){
             
           $("#bandera").val("edit");
-          var formData = new FormData($("#form_demandante")[0]);
           $.ajax({
             type: 'POST',
-            url: '../build/sql/crud_demandantes.php',
-            //datos del formulario
-            data: formData,
-            //necesario para subir archivos via ajax
-            cache: false,
-            contentType: false,
-            processData: false,
+            url: '../build/sql/crud_emprendedores.php',
+            data: $("#form_emprendedor").serialize()
           })
           .done(function(resultado_ajax){
             if(resultado_ajax === "Exito"){
@@ -551,7 +555,7 @@ $(document).ready(function(){
                       primary: true,
                       click: function(notice) {
                         notice.close();
-                        location.href='../production/lista_demandantes.php';
+                        location.href='../production/lista_emprendedores.php';
                       }
                     }]
                   },
@@ -582,7 +586,7 @@ $(document).ready(function(){
                     primary: true,
                     click: function(notice) {
                       notice.close();
-                      location.href='../production/lista_demandantes.php';
+                      location.href='../production/lista_emprendedores.php';
                     }
                   }]
                 },

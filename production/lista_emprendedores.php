@@ -91,48 +91,22 @@ include ("../build/conexion.php");
                     <input type="hidden" name="bandera" id="bandera">
                     <input type="hidden" name="baccion" id="baccion">
 
-                
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Empresario</th>
-                          <th>Recursos Humanos</th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                         
-                        $contador=1;
-                        $stmt= $pdo->prepare("SELECT * FROM emprendedor");
-                        $stmt->execute();
-                        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach($result as $lista_emprendedor){
-                             
-                              echo "<tr>";
-                              echo "<td>" .$contador. "</td>";
-                              echo "<td>" . $lista_emprendedor['nombre'] . " " . $lista_emprendedor['apellido'] . "</td>";
-                              echo "<td>" . $lista_emprendedor['recursos_humanos'] . "</td>";
-                      
-                              echo "<td>";
-                              
-                                echo "<a class='btn btn-success' onclick='mostrar_usuario(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Mostrar Usuario'><i class='fa fa-eye'></i></a>";
-                                echo "<a class='btn btn-info' onclick='editar_usuario(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Editar Usuario'><i class='fa fa-edit'></i></a>";
-                                echo "<a class='btn btn-danger' onclick='eliminar_usuario(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Eliminar Usuario'><i class='fa fa-trash-o'></i></a>";
-                             
-                              echo "</td>";
-                              echo "</tr>";
-                              $contador++;
-                          }
-                        ?>
-                      </tbody>
-                    </table>
-                    <form id="from_editar_usuario" name="from_editar_usuario" action="editar_usuario.php" method="POST">
+                    <input type="hidden" name="estado" id="estado" value="<?php echo "Activo"; ?>">
+
+                    <div class="col-md-1 col-sm-1 col-xs-12">
+                      <input type="checkbox" class="" id="estado_e" name="estado_e" checked/>
+                    </div>
+
+                    <!-- inicio tabla-->
+                    <div id="div_tabla_emprendedores">
+                    </div>
+                    <!-- fin tabla-->
+  
+                    <form id="from_editar_emprendedor" name="from_editar_emprendedor" action="editar_emprendedor.php" method="POST">
                       <input type="hidden" id="id" name="id">
                     </form>
 
-                    <form id="from_mostrar_usuario" name="from_mostrar_usuario" action="mostrar_usuario.php" target="_blank" method="POST">
+                    <form id="from_mostrar_emprendedor" name="from_mostrar_emprendedor" action="mostrar_emprendedor.php" target="_blank" method="POST">
                       <input type="hidden" id="mostrar" name="mostrar">
                     </form>
                       </div>  
@@ -190,7 +164,7 @@ include ("../build/conexion.php");
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
     <!-- Validaciones Form Usuario -->
-    <script src="../build/js/validaciones/form_usuario.js"></script>
+    <script src="../build/js/validaciones/list_emprendedor.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>

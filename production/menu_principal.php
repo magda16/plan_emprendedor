@@ -39,6 +39,12 @@
                       <li><a href="lista_instituciones.php">Ver Listado</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-folder-o"></i> Actividades <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="ingreso_actividad.php">Agregar</a></li>
+                      <li><a href="lista_actividades.php">Ver Listado</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-folder-o"></i> Ayudas Recibidas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="ingreso_ayudas_recibidas.php">Agregar</a></li>

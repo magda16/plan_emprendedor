@@ -1,14 +1,21 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset="utf-8">
-<title>MAPA</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAPA</title>
 
   <!-- Bootstrap -->
   <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+  <!-- PNotify -->
+  <link href="../vendors/PNotify/dist/PNotifyBrightTheme.css" rel="stylesheet" type="text/css" />
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.css" rel="stylesheet">
   
 <style>
       html, body {
@@ -32,7 +39,32 @@
   //window.opener.document.getElementById('lon').value = document.getElementById("coordsLo").value;
   //window.close();
   }else{
-    swal("Advertencia", "1- Mueva Marcador\n2- Precione Botón Obtener Coordenadas", "warning");
+    PNotify.info({
+                title: 'Información',
+                text: '1- Mueva Marcador\n2- Precione Botón Obtener Coordenadas.',
+                styling: 'bootstrap3',
+                icons: 'bootstrap3',
+                hide: false,
+                modules: {
+                  Confirm: {
+                    confirm: true,
+                    buttons: [{
+                      text: 'Aceptar',
+                      primary: true,
+                      click: function(notice) {
+                        notice.close();
+                      }
+                    }]
+                  },
+                  Buttons: {
+                    closer: false,
+                    sticker: false
+                  },
+                  History: {
+                    history: false
+                  }
+                }
+              });
   }
 };
 
@@ -47,12 +79,11 @@
 
     <input type="hidden" id="coordsLa" />
     <input type="hidden" id="coordsLo" />
-    <div class="col-md-6" align="center">
-      <br/>
-      <button type="button" class="btn btn-round  btn-danger" onClick="selecciona()" value="Obtener Coordenadas">
-        <span class="fa fa-map-marker">&nbsp;&nbsp;&nbsp;</span>Obtener Coordenadas
-      </button>
+    <br />
+    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 text-center">
+      <button class="btn btn-round btn-primary" type="button" onClick="selecciona()" value="Obtener Coordenadas"><i class="fa fa-map-marker"></i>  Obtener Coordenadas</button>
     </div>
+    
     <script>
 
 
@@ -85,7 +116,7 @@ function setMapa (coords)
       var map = new google.maps.Map(document.getElementById('map'),
       {
         zoom: 17,
-        center:new google.maps.LatLng(13.645775455067747,-88.78482488598326),
+        center:new google.maps.LatLng(13.841345738343025,-88.8472831020996),
 
       });
 
@@ -97,7 +128,7 @@ function setMapa (coords)
         title: "Marcador",
         draggable: true,
         animation: google.maps.Animation.DROP,
-        position: new google.maps.LatLng(13.645775455067747,-88.78482488598326),
+        position: new google.maps.LatLng(13.841345738343025,-88.8472831020996),
 
       });
       //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica 
@@ -127,12 +158,19 @@ function toggleBounce() {
 // Carga de la libreria de google maps 
 
     </script>
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQMZPKy11FSacYTvGO8ZCD9DAKk8bquK0&callback=initMap"></script> -->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQMZPKy11FSacYTvGO8ZCD9DAKk8bquK0&callback=initMap"></script>
+    
     
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- PNotify -->
+    <script src="../vendors/PNotify/dist/iife/PNotify.js"></script>
+    <script src="../vendors/PNotify/dist/iife/PNotifyButtons.js"></script>
+    <script src="../vendors/PNotify/dist/iife/PNotifyConfirm.js"></script>
+    <script src="../vendors/PNotify/dist/iife/PNotifyMobile.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.js"></script>
   </body>
 </html>
