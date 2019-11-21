@@ -88,9 +88,8 @@ include ("../build/conexion.php");
                   <div class="x_content">
                   <br />
                   
-                    <input type="hidden" name="bandera" id="bandera">
-                    <input type="hidden" name="baccion" id="baccion">
-
+                    
+                    
                     <input type="hidden" name="estado" id="estado" value="<?php echo "Activo"; ?>">
 
                     <div class="col-md-1 col-sm-1 col-xs-12">
@@ -109,6 +108,57 @@ include ("../build/conexion.php");
                     <form id="from_mostrar_emprendedor" name="from_mostrar_emprendedor" action="mostrar_emprendedor.php" target="_blank" method="POST">
                       <input type="hidden" id="mostrar" name="mostrar">
                     </form>
+
+
+                    <!-- Modal -->
+                    <form id="from_agregar_foto" name="from_agregar_foto" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                    <div class="modal fade" id="modal_agregar_foto" name="modal_agregar_foto" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog ">
+                      <div class="modal-content">
+                      <br />
+                        <div class="modal-body">
+                        <input type="hidden" name="bandera" id="bandera">
+                        <input type="hidden" name="baccion" id="baccion">
+                        <h3 class="modal-title" id="myModalLabel" align="center"><i class="fa fa-file-image-o"> </i> Agregar Foto</h3>
+                        <div class="clearfix"></div>
+                        <br />
+                          <div class="form-group" id="dcu_error" name="dcu_error">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Foto: <span class="required" style="color: #CD5C5C;"> *</span>
+                            </label><br />
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="file" id="foto" name="foto" accept="image/*" required="required"/>
+                            </div><br />
+                            <span class="help-block control-label col-md-6 col-sm-6 col-xs-12 text-left" id="cu_error" name="cu_error"></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" for="descripcion">Descripción:
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control has-feedback-left" id="descripcion" name="descripcion" required="required" placeholder="Ingrese Descripción">
+                              <span class="fa fa-circle-o form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <span class="help-block"></span>
+                          </div>
+
+                          <br />
+                        
+
+                        <div class="ln_solid"></div>
+                        <p style="color:RGB(205, 92, 92);">( * ) Campos Obligatorios.</p>
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 text-right">
+                          <button class="btn btn-round btn-default" type="button" id="btncancelar" name="btncancelar"><i class="fa fa-ban"></i>  Cancelar</button>
+                            <button class="btn btn-round btn-primary" type="button" id="btnguardar" name="btnguardar"><i class="fa fa-save"></i>  Guardar</button>
+                          </div>
+                        <div class="clearfix"></div>
+                          
+                       
+                       
+                      </div>
+                    </div>
+                  </div>
+                  </form>
+                  <!-- Fin Modal -->
                       </div>  
 
                     </div>

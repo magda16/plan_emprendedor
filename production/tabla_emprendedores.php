@@ -43,6 +43,7 @@
                                 
                                 if($estado=="Activo"){
                                   echo "<a class='btn btn-info' onclick='editar_emprendedor(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Editar Emprendedor'><i class='fa fa-edit'></i></a>";
+                                  echo "<a class='btn btn-cafe' onclick='agregar_foto(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Agregar Foto'><i class='fa fa-file-image-o'></i></a>";
                                   echo "<a class='btn btn-danger' onclick='dar_baja_emprendedor(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Dar Baja Emprendedor'><i class='fa fa-long-arrow-down'></i></a>";
                                 }else if($estado=="Inactivo"){
                                     echo "<a class='btn btn-primary' onclick='dar_alta_emprendedor(".$lista_emprendedor['id_emprendedor'].")' data-toggle='tooltip' data-placement='top' title='Activar Emprendedor'><i class='fa fa-long-arrow-up'></i></a>";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 20-11-2019 a las 23:48:47
+-- Tiempo de generación: 21-11-2019 a las 10:57:55
 -- Versión del servidor: 5.7.21
 -- Versión de PHP: 5.6.35
 
@@ -173,6 +173,21 @@ INSERT INTO `financiamiento` (`id_financiamiento`, `propio`, `credito`, `sub_ven
 (3, '80.00', '0.00', '0.00', '0.00', 3),
 (4, '10.00', '0.00', '0.00', '0.00', 4),
 (5, '10.00', '5.00', '5.00', '5.00', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `foto`
+--
+
+DROP TABLE IF EXISTS `foto`;
+CREATE TABLE IF NOT EXISTS `foto` (
+  `id_foto` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` text COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
+  `id_emprendedor` int(11) NOT NULL,
+  PRIMARY KEY (`id_foto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 

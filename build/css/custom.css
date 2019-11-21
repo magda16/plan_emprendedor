@@ -423,6 +423,9 @@ body .container.body .right_col {
 .dark {
     color: #34495E
 }
+.cafe {
+    color: #E74C3C
+}
 .border-blue {
     border-color: #3498DB !important
 }
@@ -2359,10 +2362,27 @@ a.btn-danger {
 .btn-dark:focus,
 .btn-dark:active,
 .btn-dark.active,
+
 .open .dropdown-toggle.btn-dark {
     color: #FFFFFF;
     background-color: #394D5F;
     border-color: #394D5F
+}
+
+.btn-cafe {
+    color: #E9EDEF;
+    background-color: #d46726d6;
+    border-color: #b96d51
+}
+.btn-cafe:hover,
+.btn-cafe:focus,
+.btn-cafe:active,
+.btn-cafe.active,
+
+.open .dropdown-toggle.btn-cafe {
+    color: #FFFFFF;
+    background-color: #e87a1b;
+    border-color: #905522
 }
 .btn-round {
     border-radius: 30px

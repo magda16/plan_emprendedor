@@ -1,4 +1,4 @@
- 
+$(document).ready(function(){
     var estado = $('#estado').val();
     $.ajax({
       type: 'POST',
@@ -51,6 +51,51 @@ $('input[id=estado_e]').on('change', function() {
       alert('Error al cargar la Pagina')
     })
   }
+
+});
+
+$($("#btncancelar")).on('click', function() {
+  
+  $("#from_agregar_foto")[0].reset();
+  $(".form-group").removeClass("has-success").addClass("");
+  $('#modal_agregar_foto').modal('hide');   
+
+});
+
+
+
+$("#from_agregar_foto").validate({
+  errorPlacement: function (error, element) {
+        $(element).closest('.form-group').find('.help-block').html(error.html());
+    },
+    highlight: function (element) {
+        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+        $(element).closest('.form-group').find('.help-block').html('');
+    },
+  rules: {
+    foto:{
+      required: true
+    },
+    descripcion:{
+      required: false,
+      minlength: 3
+    }
+  },
+  messages: {
+    foto: {
+      required: "Por favor, seleccione foto."
+    },
+    descripcion:{
+      required: "Por favor, ingrese descripción.",
+      minlength: "Debe ingresar m&iacute;nimo 3 carácteres."
+    }
+  }
+});
+
+
 });
 
 function mostrar_emprendedor(id){
@@ -98,6 +143,75 @@ function mostrar_emprendedor(id){
     });
     
    }
+
+   function agregar_foto(id){
+    $('#baccion').val(id);
+    $('#modal_agregar_foto').modal({show:true});
+   }
+   
+
+  $("#btnguardar").click(function(){
+    if($("#from_agregar_foto").valid()){
+      $("#bandera").val("add");
+      var formData = new FormData($("#from_agregar_foto")[0]);
+      $.ajax({
+        type: 'POST',
+        url: '../build/sql/crud_agregar_foto.php',
+        //datos del formulario
+        data: formData,
+        //necesario para subir archivos via ajax
+        cache: false,
+        contentType: false,
+        processData: false,
+      })
+      .done(function(resultado_ajax){
+        if(resultado_ajax === "Exito"){
+
+          PNotify.success({
+            title: 'Éxito',
+            text: 'Registro almacenado.',
+            styling: 'bootstrap3',
+            icons: 'bootstrap3'
+          });
+
+          $("#from_agregar_foto")[0].reset();
+          $(".form-group").removeClass("has-success").addClass("");
+          $('#modal_agregar_foto').modal('hide');       
+            
+        }
+        if(resultado_ajax === "Error"){
+        
+          PNotify.error({
+            title: 'Error',
+            text: 'Sin conexión a la base de datos.',
+            styling: 'bootstrap3',
+            icons: 'bootstrap3'
+          });
+
+          $("#from_agregar_foto")[0].reset();
+          $(".form-group").removeClass("has-success").addClass("");
+          $('#modal_agregar_foto').modal('hide');     
+    
+        }             
+      })
+      .fail(function(){
+        alert('Error al cargar la Pagina')
+      })
+        
+    }else{
+     PNotify.info({
+       title: 'Información',
+       text: 'Revise que los datos esten completos.',
+       styling: 'bootstrap3',
+       icons: 'bootstrap3'
+     });
+   
+   }
+     
+    });
+
+
+   
    
    function dar_baja_emprendedor(id){
    
