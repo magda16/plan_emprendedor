@@ -61,7 +61,7 @@
                   </li> 
                   <li><a><i class="fa fa-newspaper-o"></i>Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      
+                    <li><a href="mapa_emprendedores_reporte.php">Ver Mapa</a></li>
                     </ul>
                   </li> 
                   <?php

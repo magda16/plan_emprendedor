@@ -84,7 +84,7 @@
                   <div class="x_content">
                   <br />
                    
-                    <form id="form_mostrar_mapa" name="form_mostrar_mapa" action="mapas.php" target="_blank" method="POST" class="form-horizontal form-label-left">
+                    <form id="form_mostrar_mapa" name="form_mostrar_mapa" action="reporte.php" target="_blank" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
                       
                         <div class="form-group">
@@ -187,9 +187,8 @@
                         <div class="ln_solid"></div>
                           <p style="color:RGB(205, 92, 92);">( * ) Campos Obligatorios.</p>
                           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 text-right">
-                           
                             <a type="button" id="btnmapa" name="btnmapa" class="btn btn-app" name="procesar">
-                              <i class="fa fa-globe"></i> Mostrar Mapa
+                              <i class="fa fa-repeat"></i> Procesar
                             </a>
                           </div>
                       
