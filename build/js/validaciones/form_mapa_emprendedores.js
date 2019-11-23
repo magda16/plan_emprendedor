@@ -28,6 +28,9 @@ $(document).ready(function(){
           $(element).closest('.form-group').find('.help-block').html('');
       },
     rules: {
+      mostrar_mapa:{
+        required: true
+      },
       genero: {
         required: true
       },
@@ -57,6 +60,9 @@ $(document).ready(function(){
       }
     },
     messages: {
+      mostrar_mapa: {
+        required: "Por favor, seleccione criterio."
+      },
       genero: {
         required: "Por favor, seleccione género."
       },
