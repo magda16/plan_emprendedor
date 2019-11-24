@@ -73,7 +73,6 @@
                   <li><a><i class="fa fa-sliders"></i>Configuracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="cambiar_clave.php">Cambiar contraseña</a></li>
-                      <li><a href="monitoreo_transacciones.php">Transacciones</a></li>
                     </ul>
                   </li>
 
