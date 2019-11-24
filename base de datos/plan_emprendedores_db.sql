@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-11-2019 a las 10:57:55
+-- Tiempo de generación: 24-11-2019 a las 22:12:17
 -- Versión del servidor: 5.7.21
 -- Versión de PHP: 5.6.35
 
@@ -25,6 +25,64 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `actividad`
+--
+
+DROP TABLE IF EXISTS `actividad`;
+CREATE TABLE IF NOT EXISTS `actividad` (
+  `id_actividad` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `hora_inicio` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `hora_fin` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
+  `estado` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  PRIMARY KEY (`id_actividad`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad` (`id_actividad`, `nombre`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`, `descripcion`, `estado`, `id_usuario`) VALUES
+(1, 'actividad dos', '2019-11-10', '2019-11-16', '06:30 AM', '01:42 PM', 'descripcion', 'Activo', 1),
+(2, 'act w2 ', '2019-11-19', '2019-11-19', '05:18 PM', '11:18 AM', 'descripcion', 'Activo', 1),
+(3, 'actividad tres', '2019-11-11', '2019-11-27', '09:12 AM', '08:11 AM', 'sdgsdfghsdfh', 'Activo', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bitacora`
+--
+
+DROP TABLE IF EXISTS `bitacora`;
+CREATE TABLE IF NOT EXISTS `bitacora` (
+  `id_bitacora` int(11) NOT NULL AUTO_INCREMENT,
+  `transaccion` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  PRIMARY KEY (`id_bitacora`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `bitacora`
+--
+
+INSERT INTO `bitacora` (`id_bitacora`, `transaccion`, `descripcion`, `fecha`, `id_usuario`) VALUES
+(1, 'ActualizaciÃ³n', 'Cambio de ContraseÃ±a', '2019-11-24', 1),
+(2, 'ActualizaciÃ³n', 'Actividad actividad dos', '2019-11-24', 1),
+(3, 'ActualizaciÃ³n', 'Nombre Cooperante oscar', '2019-11-24', 1),
+(4, 'ActualizaciÃ³n', 'Nombre Cooperante roxana estefani cardona', '2019-11-24', 1),
+(5, 'Registro', 'Nombre Emprendedor maria elizabeth mejia rodriguez', '2019-11-24', 1),
+(6, 'ActualizaciÃ³n', 'Nombre Cooperante marcos', '2019-11-24', 1),
+(7, 'ActualizaciÃ³n', 'Actividad actividad tres', '2019-11-24', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cooperante`
 --
 
@@ -38,14 +96,19 @@ CREATE TABLE IF NOT EXISTS `cooperante` (
   `id_emprendedor` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_cooperante`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `cooperante`
 --
 
 INSERT INTO `cooperante` (`id_cooperante`, `nombre_cooperante`, `monto`, `tipo_ayuda`, `fecha_ingreso`, `id_emprendedor`, `id_usuario`) VALUES
-(2, 'rty', '852.00', 'Materia Prima', '2019-11-04', 1, 1);
+(2, 'oscar', '852.00', 'Efectivo', '2019-11-04', 1, 1),
+(3, 'juan zaldibar', '500.00', 'Efectivo', '2019-11-12', 3, 1),
+(4, 'luis', '10.00', 'Efectivo', '2019-11-11', 4, 1),
+(5, 'maria', '300.00', 'Materia Prima', '2019-11-11', 1, 1),
+(6, 'maria a', '20.00', 'Materia Prima', '2019-10-28', 3, 1),
+(7, 'marcos', '500.00', 'Apoyo Tecnico', '2019-11-12', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `emprendedor` (
   `id_usuario` int(11) NOT NULL,
   `estado` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_emprendedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `emprendedor`
@@ -144,7 +207,9 @@ INSERT INTO `emprendedor` (`id_emprendedor`, `institucion`, `responsable`, `fech
 (2, 'ABCD1', 'Sofia Escalante1', '2019-10-28', 'Amilcar Ernesto1', 'Vega Duran1', '', '78593362-1', '1005-896859-895-1', '1920-07-17', 'cfvghbndcfgbn1', 'dfghdfgh1', '11', '208', '[\"7859-6857\",\"6985-7481\"]', 'hgdhg1@gmail.com', 'dfgsdf1', 'gsdfgsdfg1', 'gyjrdytju', 'SERVICIOS TECNICOS', 'Arrendado', '2019-11-04', 13.645327137013625, -88.78573683704832, 'adsfgsdf1', 'sadfasdf1', 'asdfsdf1', 'sadfsadf1', 'dfsag1', 'sadafgs1', 'dfgsdg1', 'asdddgsdfg1', 'Informal', 'asdfgsadf1', '4654-653163-213-1', '51621', '', '65136121', '57858751', 'dfgsdfgsd1', 'fgsdfgsdfg1', 'sdfgsdfgsdfgsdf1', 1, 'Activo'),
 (3, 'fgdchgsd', 'Iris Garcia', '2019-11-04', 'Hector', 'Hernandez', '', '78968554-7', '1005-896355-695-9', '1989-06-13', 'adfg', 'dsfgdfg', '1', '2', '[\"7896-8574\"]', 'dfgsdfg@gmail.com', 'dcsd', 'sdcsdc', 'No', 'PECES', 'Arrendado', '2019-11-05', 13.645066486590691, -88.78511456455686, 'dfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'dfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'sdfgsdfg', 'Arrendado', 'sdfgsdfg', '4356-345634-563-4', '5463456', '34563456', '3456', '3456', '34563456', '34563456', '34563456', 1, 'Activo'),
 (4, 'insti', 'Estela Rivas', '2019-11-11', 'Juan Jose', 'Martinez', '', '78965325-6', '1005-896325-595-5', '1990-06-12', 'comu', 'canton', '3', '23', '[\"7896-8574\"]', 'cfcff@gmail.com', 'fcdxfgcdwfg', 'fcsfgcgfsd', 'No', 'PECES', 'Arrendado', '2019-11-12', 13.8888888, -88.858888, 'eqfrgwerg', 'wergwer', 'gwertwert', 'wertwert', 'wertertw', 'wertwert', 'wretwertwer', 'wertwertwer', 'Arrendado', 'yhgvwegrvf', '1444-841146-516-5', '5461252', '45548989', '4152465', '175424', '6826', '428502', 'wregwerg', 1, 'Activo'),
-(5, 'dghs', 'ghbghdfghdf', '2019-11-18', 'roxana estefani', 'cardona', 'Femenino', '78596352-1', '1005-896857-414-7', '1998-10-27', 'sgfhgfh', 'fghfgh', '2', '14', '[\"7896-8574\"]', 'fghfg@gmail.com', 'bbvxcbvxc', 'cvbcxbv', 'No', 'HORTALIZAS', 'Arrendado', '2019-10-27', 13.840647778797916, -88.84846327406615, 'fvhnjmgbhj', 'fghjghj', 'ghjghj', 'ghjghjghj', 'gchjghj', 'ghjghj', 'gchjghj', 'hgjghj', 'Informal', ' cghjcghj', '1478-525695-262-9', '5265265255', '12625565655', '21265125256', '566526556565', 'cghjcghj', 'ghjcghj', 'c ghjcghjc ghj', 1, 'Activo');
+(5, 'abdc', 'ghbghdfghdf', '2019-11-18', 'roxana estefani', 'cardona', 'Femenino', '78596352-1', '1005-896857-414-7', '1998-10-27', 'sgfhgfh', 'fghfgh', '2', '14', '[\"7896-8574\"]', 'fghfg@gmail.com', 'bbvxcbvxc', 'cvbcxbv', 'No', 'HORTALIZAS', 'Arrendado', '2019-10-27', 13.840647778797916, -88.84846327406615, 'fvhnjmgbhj', 'fghjghj', 'ghjghj', 'ghjghjghj', 'gchjghj', 'ghjghj', 'gchjghj', 'hgjghj', 'Informal', ' cghjcghj', '1478-525695-262-9', '5265265255', '12625565655', '21265125256', '566526556565', 'cghjcghj', 'ghjcghj', 'c ghjcghjc ghj', 1, 'Activo'),
+(6, 'hygdfgh', 'dfghydfgh', '2019-11-11', 'dfyu', 'dfghdfgh', 'Otro', '41896487-9', '4856-478964-786-7', '1990-01-30', 'vghbjfgh', 'fghyjgfhj', '1', '1', '[\"1448-7867\"]', 'zdfg@gmail.com', 'fdgh', 'dfghdfgh', 'dfghdfgh', 'APICULTURA', 'Arrendado', '2019-11-12', 13, -88, 'nmklÃ±jb nkl', 'jkljhkl', 'jkljkl', 'jkljkl', 'b jhkljkl', 'jkljkl', 'hbjkljhbkl', 'b hjlkbhjkl', 'Formal', 'nklÃ± nj', '1561-549641-564-5', '456456', '456456', '456456', '45645645', '456v bmj vc', ' cghbvj cgvhbj', 'gvhjvghj', 1, 'Activo'),
+(7, 'bgty', 'luis jaramillo', '2019-11-18', 'maria elizabeth', 'mejia rodriguez', 'Femenino', '78596814-7', '1005-898693-254-8', '1990-01-30', 'dfh', 'dfsgdsf', '2', '16', '[\"7896-8574\"]', 'gxhgfd@gmail.com', 'ghdfg', 'fgdfg', 'No', 'PECES', 'Arrendado', '2019-11-12', 13.888888, -88.88888, 'tsfhdfgh', 'ghjfghjjdghj', 'fghfghjghj', 'hgjghjhgj', 'fgjfg', 'gfhjfghj', 'ghjfghj', 'fghjfghjfg', 'Formal', 'fghjfghj', '7896-857441-445-4', '4747445554', '54648564', '488796', '485694', 'giukhlj,ghvj', 'ghvjfghj', 'hgjghvjkghj', 1, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -161,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `financiamiento` (
   `otro` decimal(10,2) NOT NULL,
   `id_emprendedor` int(11) NOT NULL,
   PRIMARY KEY (`id_financiamiento`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `financiamiento`
@@ -172,7 +237,9 @@ INSERT INTO `financiamiento` (`id_financiamiento`, `propio`, `credito`, `sub_ven
 (2, '43.00', '9.00', '10.00', '9.00', 2),
 (3, '80.00', '0.00', '0.00', '0.00', 3),
 (4, '10.00', '0.00', '0.00', '0.00', 4),
-(5, '10.00', '5.00', '5.00', '5.00', 5);
+(5, '10.00', '5.00', '5.00', '5.00', 5),
+(6, '10.00', '0.00', '0.00', '0.00', 6),
+(7, '5.00', '0.00', '0.00', '0.00', 7);
 
 -- --------------------------------------------------------
 
@@ -187,7 +254,14 @@ CREATE TABLE IF NOT EXISTS `foto` (
   `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
   `id_emprendedor` int(11) NOT NULL,
   PRIMARY KEY (`id_foto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `foto`
+--
+
+INSERT INTO `foto` (`id_foto`, `foto`, `descripcion`, `id_emprendedor`) VALUES
+(1, 'Archivos/2/1451948340550.jpg', 'descripciÃ³n', 2);
 
 -- --------------------------------------------------------
 
