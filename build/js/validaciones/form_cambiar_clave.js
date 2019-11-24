@@ -55,6 +55,7 @@ $(document).ready(function(){
        data: $("#form_cambiar_clave").serialize()
      })
      .done(function(resultado_ajax){
+       alert(resultado_ajax);
        if(resultado_ajax === "Exito"){
         PNotify.success({
           title: 'Éxito',
@@ -70,7 +71,7 @@ $(document).ready(function(){
                 primary: true,
                 click: function(notice) {
                   notice.close();
-                  location.href='../production/index.php';
+                  location.href='../production/login.php';
                 }
               }]
             },

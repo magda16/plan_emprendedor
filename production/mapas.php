@@ -73,8 +73,6 @@
 </head>
 
 <body>
-
-<body >
     <div id="map"></div>
 
     
@@ -121,8 +119,8 @@ function setMapa (coords)
 
       <?php 
 				include ("../build/conexion.php");
-				//if(isset($_POST['genero'])){
-          $genero="Femenino";
+				if(isset($_POST['genero'])){
+          $genero=$_POST['genero'];
         
               $stmt= $pdo->prepare("SELECT * FROM emprendedor WHERE sexo=:genero");
               $stmt->bindParam(":genero",$genero,PDO::PARAM_INT);
@@ -141,7 +139,7 @@ function setMapa (coords)
       });
       <?php
         }
-      //}
+      }
       ?>
       //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica 
       //cuando el usuario a soltado el marcador

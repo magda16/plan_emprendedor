@@ -172,6 +172,8 @@ $nivel_usu=$_SESSION['nivel'];
                               <input type="radio" class=" " id="sexo" name="sexo" value="Masculino" checked> Masculino </label>
                               <label>
                               <input type="radio" class=" " id="sexo" name="sexo" value="Femenino"> Femenino </label>
+                              <label>
+                              <input type="radio" class=" " id="sexo" name="sexo" value="Otro"> Otro </label>
                             </div>
                           </div>
 

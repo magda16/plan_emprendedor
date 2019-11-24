@@ -173,6 +173,7 @@ if(isset($_POST['id'])){
 
                   <form id="form_emprendedor" name="form_emprendedor" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
+                      <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
                       <input type="hidden" id="actualizar" name="actualizar" value="<?php echo $id_emprendedor_r; ?>" >
                       <input type="hidden" id="id_departamento" name="id_departamento" value="<?php echo $id_departamento_r; ?>">
                       <input type="hidden" id="id_municipio" name="id_municipio" value="<?php echo $id_municipio_r; ?>">
@@ -249,6 +250,8 @@ if(isset($_POST['id'])){
                               <input type="radio" class=" " id="sexo" name="sexo" value="Masculino" <?php if($sexo_r=="Masculino") echo "checked"; ?> > Masculino </label>
                               <label>
                               <input type="radio" class=" " id="sexo" name="sexo" value="Femenino" <?php if($sexo_r=="Femenino") echo "checked"; ?> > Femenino </label>
+                              <label>
+                              <input type="radio" class=" " id="sexo" name="sexo" value="Femenino" <?php if($sexo_r=="Otro") echo "checked"; ?> > Otro </label>
                             </div>
                           </div>
 

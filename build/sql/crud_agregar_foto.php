@@ -58,9 +58,9 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
           }
         }
       }
-          
+          $foto= substr($dato, 6);
           $stmt=$pdo->prepare("INSERT INTO foto (foto, descripcion, id_emprendedor) VALUES (:foto, :descripcion, :id_emprendedor)");
-          $stmt->bindParam(":foto",$dato,PDO::PARAM_STR);
+          $stmt->bindParam(":foto",$foto,PDO::PARAM_STR);
           $stmt->bindParam(":descripcion",$descripcion,PDO::PARAM_STR);
           $stmt->bindParam(":id_emprendedor",$id_emprendedor,PDO::PARAM_INT);
 

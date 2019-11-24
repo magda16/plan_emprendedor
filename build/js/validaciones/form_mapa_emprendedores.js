@@ -28,16 +28,13 @@ $(document).ready(function(){
           $(element).closest('.form-group').find('.help-block').html('');
       },
     rules: {
-      mostrar_mapa:{
-        required: true
-      },
-      genero: {
+      'criterio[]': { 
         required: true
       },
       desde: {
         numero: true,
         required: true,
-        minlength: 2
+        minlength: 1
       },
       hasta: {
         numero: true,
@@ -52,6 +49,14 @@ $(document).ready(function(){
         required: true,
         number: true
       },
+      canton:{
+        required: false,
+        number: false
+      },
+      comunidad:{
+        required: false,
+        number: false
+      },
       actividad_economica:{
         required: true
       },
@@ -60,7 +65,7 @@ $(document).ready(function(){
       }
     },
     messages: {
-      mostrar_mapa: {
+      'criterio[]': { 
         required: "Por favor, seleccione criterio."
       },
       genero: {
@@ -68,7 +73,7 @@ $(document).ready(function(){
       },
       desde: {
         required: "Por favor, ingrese desde.",
-        minlength: "Debe ingresar m&iacute;nimo 2 carácteres."
+        minlength: "Debe ingresar m&iacute;nimo 1 caracter."
       },
       hasta: {
         required: "Por favor, ingrese hasta.",
@@ -79,7 +84,13 @@ $(document).ready(function(){
       },
       municipio: {
         required: "Por favor, seleccione municipio."
-      },     
+      }, 
+      canton: {
+        required: "Por favor, seleccione cantón."
+      },
+      comunidad: {
+        required: "Por favor, seleccione comunidad."
+      },    
       actividad_economica: {
         required: "Por favor, seleccione actividad económica."
       }, 
@@ -89,10 +100,58 @@ $(document).ready(function(){
     }
   });
 
+  $("input[id='genero_c']").on("change", function() {
+    if ($(this).is(':checked') ) {
+      $("#div_genero").show();
+    } else {
+      $("#div_genero").hide();
+      $("#genero").val("");
+    }
+  });
+
+  $("input[id='edad_c']").on("change", function() {
+    if ($(this).is(':checked') ) {
+      $("#div_edad").show();
+    } else {
+      $("#div_edad").hide();
+      $("#desde").val("");
+      $("#hasta").val("");
+    }
+  });
+
+  $("input[id='ubicacion_c']").on("change", function() {
+    if ($(this).is(':checked') ) {
+      $("#div_ubicacion").show();
+    } else {
+      $("#div_ubicacion").hide();
+      $("#departamento").val("");
+      $("#municipio").val("");
+      $("#canton").val("");
+      $("#comunidad").val("");
+    }
+  });
+
+  $("input[id='actividad_economica_c']").on("change", function() {
+    if ($(this).is(':checked') ) {
+      $("#div_actividad_economica").show();
+    } else {
+      $("#div_actividad_economica").hide();
+      $("#actividad_economica").val("");
+    }
+  });
+
+  $("input[id='tiempo_operacion_c']").on("change", function() {
+    if ($(this).is(':checked') ) {
+      $("#div_tiempo_operacion").show();
+    } else {
+      $("#div_tiempo_operacion").hide();
+      $("#fecha_inicio").val("");
+    }
+  });
 
     $.ajax({
       type: 'POST',
-      url: '../build/sql/lista_departamentos.php'
+      url: '../build/sql/lista_departamentos_e.php'
     })
     .done(function(lista_departamentos){
         $('#departamento').html(lista_departamentos)
@@ -105,11 +164,43 @@ $(document).ready(function(){
         var id = $('#departamento').val()
         $.ajax({
           type: 'POST',
-          url: '../build/sql/lista_municipios.php',
+          url: '../build/sql/lista_municipios_e.php',
           data: {'id': id}
         })
         .done(function(lista_municipios){
           $('#municipio').html(lista_municipios)
+        })
+        .fail(function(){
+          alert('Error al cargar la Pagina')
+        })
+      });
+
+      $('#municipio').on('change', function(){
+        var id_departamento = $('#departamento').val()
+        var id_municipio = $('#municipio').val()
+        $.ajax({
+          type: 'POST',
+          url: '../build/sql/lista_canton_e.php',
+          data: {'id_departamento': id_departamento, 'id_municipio': id_municipio}
+        })
+        .done(function(lista_canton){
+          $('#canton').html(lista_canton)
+        })
+        .fail(function(){
+          alert('Error al cargar la Pagina')
+        })
+      });
+
+      $('#canton').on('change', function(){
+        var id_departamento = $('#departamento').val()
+        var id_municipio = $('#municipio').val()
+        $.ajax({
+          type: 'POST',
+          url: '../build/sql/lista_comunidad_e.php',
+          data: {'id_departamento': id_departamento, 'id_municipio': id_municipio}
+        })
+        .done(function(lista_comunidad){
+          $('#comunidad').html(lista_comunidad)
         })
         .fail(function(){
           alert('Error al cargar la Pagina')
@@ -126,69 +217,6 @@ $(document).ready(function(){
       .fail(function(){
           alert('Error al cargar la Pagina')
       })
-
-    $("#mostrar_mapa").on("change", function(){
-      
-      if($("#mostrar_mapa").val()==="genero"){
-        $("#div_genero").show();
-        $("#div_edad").hide();
-        $("#div_ubicacion").hide();
-        $("#div_actividad_economica").hide();
-        $("#div_tiempo_operacion").hide();
-        $("#desde").val("");
-        $("#hasta").val("");
-        $("#departamento").val("");
-        $("#municipio").val("");
-        $("#actividad_economica").val("");
-        $("#fecha_inicio").val("");
-      }else if($("#mostrar_mapa").val()==="edad"){
-        $("#div_edad").show();
-        $("#div_genero").hide();
-        $("#div_ubicacion").hide();
-        $("#div_actividad_economica").hide();
-        $("#div_tiempo_operacion").hide();
-        $("#genero").val("");
-        $("#departamento").val("");
-        $("#municipio").val("");
-        $("#actividad_economica").val("");
-        $("#fecha_inicio").val("");
-      }else if($("#mostrar_mapa").val()==="ubicacion"){
-        $("#div_ubicacion").show();
-        $("#div_genero").hide();
-        $("#div_edad").hide();
-        $("#div_actividad_economica").hide();
-        $("#div_tiempo_operacion").hide();
-        $("#genero").val("");
-        $("#desde").val("");
-        $("#hasta").val("");
-        $("#actividad_economica").val("");
-        $("#fecha_inicio").val("");
-      }else if($("#mostrar_mapa").val()==="actividad_economica"){
-        $("#div_actividad_economica").show();
-        $("#div_genero").hide();
-        $("#div_edad").hide();
-        $("#div_ubicacion").hide();
-        $("#div_tiempo_operacion").hide();
-        $("#genero").val("");
-        $("#desde").val("");
-        $("#hasta").val("");
-        $("#departamento").val("");
-        $("#municipio").val("");
-        $("#fecha_inicio").val("");
-      }else if($("#mostrar_mapa").val()==="tiempo_operacion"){
-        $("#div_tiempo_operacion").show();
-        $("#div_genero").hide();
-        $("#div_edad").hide();
-        $("#div_ubicacion").hide();
-        $("#div_actividad_economica").hide();
-        $("#genero").val("");
-        $("#desde").val("");
-        $("#hasta").val("");
-        $("#departamento").val("");
-        $("#municipio").val("");
-        $("#actividad_economica").val("");
-      }
-    });
 
       $("#btnmapa").click(function(){
         if($("#form_mostrar_mapa").valid()){

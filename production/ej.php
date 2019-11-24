@@ -74,7 +74,6 @@
 
 <body>
 
-<body >
     <div id="map"></div>
 
     <input type="hidden" id="coordsLa" />

@@ -125,12 +125,16 @@
   
     function obtenerResultado(){
       include ("../conexion.php");
-      $id_usuario=$_POST["actualizar"];
+      $id_usuario=$_POST["id_usuario"];
       $clave=$_POST["clave"];
       $nueva_clave=$_POST["nueva_clave"];
-      
-      
-      
+      $transaccion="Actualización";
+      $descripcion="Cambio de Contraseña";
+
+      date_default_timezone_set('America/El_Salvador');
+        
+      $fecha= date('Y-m-d');
+
         $stmt=$pdo->prepare("UPDATE usuarios SET clave=:nueva_clave WHERE clave=:clave AND id_usuario=:id_usuario");
         $stmt->bindParam(":clave",$clave,PDO::PARAM_STR);
         $stmt->bindParam(":nueva_clave",$nueva_clave,PDO::PARAM_STR);
@@ -138,6 +142,12 @@
         $stmt->execute();
         $fila=$stmt->rowCount();
         if($fila > 0){
+          $stmt1=$pdo->prepare("INSERT INTO bitacora (transaccion, descripcion, fecha, id_usuario) VALUES (:transaccion, :descripcion, :fecha, :id_usuario)");
+          $stmt1->bindParam(":transaccion",$transaccion,PDO::PARAM_STR);
+          $stmt1->bindParam(":descripcion",$descripcion,PDO::PARAM_STR);
+          $stmt1->bindParam(":fecha",$fecha,PDO::PARAM_STR);
+          $stmt1->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
+          $stmt1->execute();
           return "Exito";
         }else{
           return "Error";

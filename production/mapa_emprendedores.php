@@ -88,19 +88,29 @@
                       <input type="hidden" name="bandera" id="bandera">
                       
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Mostrar Mapa por: </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select class="form-control" id="mostrar_mapa" name="mostrar_mapa">
-                              <option selected="selected" value="">Seleccione Criterio</option>
-                              <option value="genero">Género</option>
-                              <option value="edad">Edad</option>
-                              <option value="ubicacion">Ubicación</option>
-                              <option value="actividad_economica">Actividad Económica</option>
-                              <option value="tiempo_operacion">Tiempo de Operacón</option>
-                            </select>
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Mostrar Mapa por: <span class="required" style="color: #CD5C5C;"> *</span></label>
+                            <div class="checkbox col-md-6 col-sm-6 col-xs-12">
+                              <label>
+                              <input type="checkbox" class="" id="genero_c" name="criterio[]"> Género </label>
+                              <br />
+                              <label>
+                              <input type="checkbox" class="" id="edad_c" name="criterio[]"> Edad </label>
+                              <br />
+                              <label>
+                              <input type="checkbox" class="" id="ubicacion_c" name="criterio[]"> Ubicación </label>
+                              <br />
+                              <label>
+                              <input type="checkbox" class="" id="actividad_economica_c" name="criterio[]"> Actividad Económica </label>
+                              <br />
+                              <label>
+                              <input type="checkbox" class="" id="tiempo_operacion_c" name="criterio[]"> Tiempo de Operacón </label>
+                              <br />
+                              <label>
+                            </div>
+                            <span class="help-block"></span>
                           </div>
-                          <span class="help-block"></span>
-                        </div><br />
+                        
+                        <br />
 
                         <div class="form-group" id="div_genero" name="div_genero">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Género: </label>
@@ -153,6 +163,24 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="municipio">Municipio: </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select class="form-control" id="municipio" name="municipio">
+                              </select>
+                            </div>
+                            <span class="help-block"></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="canton">Cantón: </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select class="form-control" id="canton" name="canton">
+                              </select>
+                            </div>
+                            <span class="help-block"></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comunidad">Comunidad: </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select class="form-control" id="comunidad" name="comunidad">
                               </select>
                             </div>
                             <span class="help-block"></span>

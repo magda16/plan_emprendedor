@@ -103,8 +103,12 @@
            
 
             $id_usuario=$_POST["id_usuario"];
+            $transaccion="Registro";
+            $descripcion_b="Nombre Emprendedor ".$nombre." ".$apellido;
 
           date_default_timezone_set('America/El_Salvador');
+
+          $fecha= date('Y-m-d');
         
           $fecha_ingres=$fecha_ingreso;
           list($dia, $mes, $year)=explode("/", $fecha_ingreso);
@@ -192,6 +196,12 @@
           $stmt1->bindParam(":id_emprendedor",$id_emprendedor,PDO::PARAM_INT);
 
           if($stmt->execute() && $stmt1->execute()){
+            $stmt2=$pdo->prepare("INSERT INTO bitacora (transaccion, descripcion, fecha, id_usuario) VALUES (:transaccion, :descripcion_b, :fecha, :id_usuario)");
+            $stmt2->bindParam(":transaccion",$transaccion,PDO::PARAM_STR);
+            $stmt2->bindParam(":descripcion_b",$descripcion_b,PDO::PARAM_STR);
+            $stmt2->bindParam(":fecha",$fecha,PDO::PARAM_STR);
+            $stmt2->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
+            $stmt2->execute();
             return "Exito";
           }else{
             return "Error";
@@ -305,8 +315,14 @@
              $act_eco_prin_sl=$_POST["act_eco_prin_sl"];
              $otra=$_POST["otra"];
              $limitaciones=$_POST["limitaciones"];
- 
+
+            $id_usuario=$_POST["id_usuario"];
+            $transaccion="Actualización";
+            $descripcion_b="Nombre Emprendedor ".$nombre." ".$apellido;
+          
            date_default_timezone_set('America/El_Salvador');
+
+           $fecha= date('Y-m-d');
          
            $fecha_ingres=$fecha_ingreso;
            list($dia, $mes, $year)=explode("/", $fecha_ingreso);
@@ -374,6 +390,12 @@
            $stmt1->bindParam(":id_emprendedor",$id_emprendedor,PDO::PARAM_INT);
  
            if($stmt->execute() && $stmt1->execute()){
+            $stmt2=$pdo->prepare("INSERT INTO bitacora (transaccion, descripcion, fecha, id_usuario) VALUES (:transaccion, :descripcion_b, :fecha, :id_usuario)");
+            $stmt2->bindParam(":transaccion",$transaccion,PDO::PARAM_STR);
+            $stmt2->bindParam(":descripcion_b",$descripcion_b,PDO::PARAM_STR);
+            $stmt2->bindParam(":fecha",$fecha,PDO::PARAM_STR);
+            $stmt2->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
+            $stmt2->execute();
              return "Exito";
            }else{
              return "Error";

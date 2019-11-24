@@ -95,9 +95,6 @@ include ("../build/conexion.php");
                       <div class="col-md-1 col-sm-1 col-xs-12">
                         <input type="checkbox" class="" id="estado_i" name="estado_i" checked/>
                       </div>
-                     
-                     
-
                     
                     <!-- inicio tabla-->
                     <div id="div_tabla_instituciones">

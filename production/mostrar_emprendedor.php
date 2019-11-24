@@ -96,6 +96,9 @@ if(isset($_POST['mostrar'])){
     
     <!-- bootstrap-progressbar -->
     <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+
+    <!-- bootstrap-datepicker -->
+    <link href="../vendors/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
      
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">
@@ -228,8 +231,7 @@ if(isset($_POST['mostrar'])){
                             <label class="col-md-3 col-sm-3 col-xs-12 control-label">Sexo: <span style="color:	#000080;"> '</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
                               <i class="fa fa-user"></i>
-                              <?php if($sexo_r=="Masculino") echo "<label class='control-label'> Masculino </label>";
-                               else echo "<label class='control-label'> Femenino </label>"; ?>
+                              <label class="control-label "><?php echo $sexo_r; ?></label>
                             </div>
                           </div>
 
@@ -731,6 +733,8 @@ if(isset($_POST['mostrar'])){
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- bootstrap-progressbar -->
     <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- bootstrap-datepicker -->
+    <script src="../vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
   
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>

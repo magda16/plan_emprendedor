@@ -1,8 +1,9 @@
 <?php
 session_start();
-$logueo=$_SESSION['logueado'];
+$logueo=$_SESSION['acceso'];
 if($logueo=='si'){
 include ("../build/conexion.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -81,7 +82,7 @@ include ("../build/conexion.php");
                    
                     <form id="form_cambiar_clave" name="form_cambiar_clave" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
-                      <input type="hidden" id="actualizar" name="actualizar" value="<?php echo $_SESSION['id_usuario']; ?>">
+                      <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clave">Contraseña Actual: <span class="required" style="color: #CD5C5C;"> *</span>

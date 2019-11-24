@@ -27,6 +27,9 @@
     <!-- bootstrap-datepicker -->
     <link href="../vendors/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
 
+    <!-- bootstrap-datetimepicker -->
+    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">
   </head>
@@ -78,7 +81,7 @@
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Ayudas Recibidas" href="lista_ayudas_recibidas.php" ><i class="fa fa-list"></i></a>
+                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Actividades" href="lista_actividades.php" ><i class="fa fa-list"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -114,21 +117,50 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_fin">Fecha Fin: día/mes/año <span class="required" style="color: #CD5C5C;"> *</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input type="text" class="form-control has-feedback-left" id="fecha_fin" name="fecha_fin" required="required" class="form-control col-md-7 col-xs-12" data-date-end-date = "0d">
+                          <input type="text" class="form-control has-feedback-left" id="fecha_fin" name="fecha_fin" required="required" class="form-control col-md-7 col-xs-12">
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         </div>
                         <span class="help-block"></span>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="monto">Horario: <span class="required" style="color: #CD5C5C;"> *</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Horario: <span class="required" style="color: #CD5C5C;"> *</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control has-feedback-left" id="monto" name="monto" required="required" placeholder="Ingrese Monto">
-                          <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
+
+                          <div class="col-sm-6">
+                            Hora Inicio <small>Hora:minutos</small>
+                            <div class="form-group">
+                                <div class="input-group date" id="tphora_inicio"  name="tphora_inicio">
+                                <span class="input-group-addon">
+                                      <span class="fa fa-clock-o"></span>
+                                    </span>
+                                    <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" required="required"/>
+                                </div>
+                                <span class="help-block"></span>
+                            </div>
+                            
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            Hora Fin <small>Hora:minutos</small>
+                            <div class="form-group">
+                                <div class="input-group date" id="tphora_fin" name="tphora_fin">
+                                <span class="input-group-addon">
+                                      <span class="fa fa-clock-o"></span>
+                                    </span>
+                                    <input type="text" class="form-control" id="hora_fin" name="hora_fin" required="required"/>
+                                    
+                                </div>
+                                <span class="help-block"></span>
+                            </div>
+                            
+                          </div>
+
                         </div>
-                        <span class="help-block"></span>
+                        
                       </div>
+
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" for="descripcion">Descripción: <span class="required" style="color: #CD5C5C;"> *</span>
@@ -182,9 +214,12 @@
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
     <!-- Validaciones Form Oficina -->
-    <script src="../build/js/validaciones/form_ayudas_recibidas.js"></script>
+    <script src="../build/js/validaciones/form_actividad.js"></script>
     <!-- jquery.inputmask -->
     <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- bootstrap-datetimepicker -->  
+    <script src="../vendors/moment/min/moment.min.js"></script>  
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>

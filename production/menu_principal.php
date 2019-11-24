@@ -46,10 +46,10 @@
                       <li><a href="lista_actividades.php">Ver Listado</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-folder-o"></i> Ayudas Recibidas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-folder-o"></i> Apoyo a Socios <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="ingreso_ayudas_recibidas.php">Agregar</a></li>
-                      <li><a href="lista_ayudas_recibidas.php">Ver Listado</a></li>
+                      <li><a href="ingreso_apoyo_socio.php">Agregar</a></li>
+                      <li><a href="lista_apoyo_socios.php">Ver Listado</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i>Usuario <span class="fa fa-chevron-down"></span></a>
@@ -72,7 +72,8 @@
 
                   <li><a><i class="fa fa-sliders"></i>Configuracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="cambiar_clave">Cambiar contraseña</a></li>
+                      <li><a href="cambiar_clave.php">Cambiar contraseña</a></li>
+                      <li><a href="monitoreo_transacciones.php">Transacciones</a></li>
                     </ul>
                   </li>
 

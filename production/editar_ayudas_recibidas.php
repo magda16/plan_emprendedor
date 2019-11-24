@@ -107,6 +107,7 @@ $nivel_usu=$_SESSION['nivel'];
                    
                     <form id="form_ayuda_recibida" name="form_ayuda_recibida" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
+                      <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
                       <input type="hidden" id="actualizar" name="actualizar" value="<?php echo $id_cooperante; ?>" >
                       <input type="hidden" id="tipo_a" name="tipo_a" value="<?php echo $tipo_ayuda_r; ?>">
                       <input type="hidden" id="emp" name="emp" value="<?php echo $id_emprendedor_r; ?>">
