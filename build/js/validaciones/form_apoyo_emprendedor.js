@@ -1,8 +1,9 @@
 $(document).ready(function(){
-
+  var id_user = $('#id_usuario').val();
   $.ajax({
     type: 'POST',
-    url: '../build/sql/lista_apoyo_emp.php'
+    url: '../build/sql/lista_apoyo_emp.php',
+    data: {'id_user': id_user}
     })
     .done(function(lista_emprendedores){
       $('#emprendedor').html(lista_emprendedores)
