@@ -31,6 +31,9 @@ $(document).ready(function(){
       'criterio[]': { 
         required: true
       },
+      genero:{
+        required: true
+      },
       desde: {
         numero: true,
         required: true,
@@ -100,7 +103,26 @@ $(document).ready(function(){
     }
   });
 
+  $("input[id='todo_c']").on("change", function() {
+    if ($(this).is(':checked') ) {
+      $("#todo").val("todos");
+      $("#genero").val("");
+      $("#desde").val("");
+      $("#hasta").val("");
+      $("#departamento").val("");
+      $("#municipio").val("");
+      $("#canton").val("");
+      $("#comunidad").val("");
+      $("#actividad_economica").val("");
+      $("#fecha_inicio").val("");
+    }else{
+      $("#todo").val("");
+    }
+  });
+
   $("input[id='genero_c']").on("change", function() {
+    $("#todo").val("");
+    $("#todo_c").prop("checked", false);  
     if ($(this).is(':checked') ) {
       $("#div_genero").show();
     } else {
@@ -110,6 +132,8 @@ $(document).ready(function(){
   });
 
   $("input[id='edad_c']").on("change", function() {
+    $("#todo").val("");
+    $("#todo_c").prop("checked", false); 
     if ($(this).is(':checked') ) {
       $("#div_edad").show();
     } else {
@@ -120,6 +144,8 @@ $(document).ready(function(){
   });
 
   $("input[id='ubicacion_c']").on("change", function() {
+    $("#todo").val("");
+    $("#todo_c").prop("checked", false); 
     if ($(this).is(':checked') ) {
       $("#div_ubicacion").show();
     } else {
@@ -132,6 +158,8 @@ $(document).ready(function(){
   });
 
   $("input[id='actividad_economica_c']").on("change", function() {
+    $("#todo").val("");
+    $("#todo_c").prop("checked", false); 
     if ($(this).is(':checked') ) {
       $("#div_actividad_economica").show();
     } else {
@@ -141,6 +169,8 @@ $(document).ready(function(){
   });
 
   $("input[id='tiempo_operacion_c']").on("change", function() {
+    $("#todo").val("");
+    $("#todo_c").prop("checked", false); 
     if ($(this).is(':checked') ) {
       $("#div_tiempo_operacion").show();
     } else {

@@ -86,10 +86,14 @@
                    
                     <form id="form_mostrar_mapa" name="form_mostrar_mapa" action="mapas.php" target="_blank" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
+                      <input type="hidden" name="todo" id="todo">
                       
                         <div class="form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12 control-label">Mostrar Mapa por: <span class="required" style="color: #CD5C5C;"> *</span></label>
                             <div class="checkbox col-md-6 col-sm-6 col-xs-12">
+                              <label>
+                              <input type="checkbox" class="" id="todo_c" name="criterio[]"> Todos </label>
+                              <br />
                               <label>
                               <input type="checkbox" class="" id="genero_c" name="criterio[]"> Género </label>
                               <br />
