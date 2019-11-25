@@ -24,7 +24,7 @@
                   </li>
                   <?php 
                     $nivel_usuario=$_SESSION['nivel'];
-                    if($nivel_usuario=="Administrador General"){
+                    if($nivel_usuario=="Administrador General" || $nivel_usuario=="Administrador Territorio"){
 
                   ?>
                   <li><a><i class="fa fa-folder-o"></i> Emprendedores <span class="fa fa-chevron-down"></span></a>
@@ -55,16 +55,6 @@
                     <li><a href="mapa_emprendedores_reporte.php">Ver Mapa</a></li>
                     </ul>
                   </li> 
-                  <?php
-
-                  }else if($nivel_usuario=="Administrador Territorio"){
-                  
-                  ?>
-
-
-
-
-
                   <?php
 
                   }else if($nivel_usuario=="Tecnico"){

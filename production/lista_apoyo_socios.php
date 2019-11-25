@@ -90,8 +90,7 @@ include ("../build/conexion.php");
                   
                     <input type="hidden" name="bandera" id="bandera">
                     <input type="hidden" name="baccion" id="baccion">
-
-                
+                    
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
@@ -106,10 +105,18 @@ include ("../build/conexion.php");
                       </thead>
                       <tbody>
                         <?php
+                        $user=$_SESSION['nivel'];
+                        $id_user=$_SESSION['id_usuario_admin'];
                          
                         $contador=1;
-                        $stmt= $pdo->prepare("SELECT c.id_cooperante, c.nombre_cooperante, c.monto, c.tipo_ayuda, DATE_FORMAT(c.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido FROM cooperante AS c INNER JOIN emprendedor AS e ON (c.id_emprendedor=e.id_emprendedor)");
-                        $stmt->execute();
+                        if($user=="Administrador General"){
+                          $stmt= $pdo->prepare("SELECT c.id_cooperante, c.nombre_cooperante, c.monto, c.tipo_ayuda, DATE_FORMAT(c.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido FROM cooperante AS c INNER JOIN emprendedor AS e ON (c.id_emprendedor=e.id_emprendedor)");
+                          $stmt->execute();
+                        }else if($user=="Administrador Territorio"){
+                          $stmt= $pdo->prepare("SELECT c.id_cooperante, c.nombre_cooperante, c.monto, c.tipo_ayuda, DATE_FORMAT(c.fecha_ingreso, '%d/%m/%Y') AS fecha_ingreso, e.nombre, e.apellido FROM cooperante AS c INNER JOIN emprendedor AS e ON (c.id_emprendedor=e.id_emprendedor) WHERE c.id_usuario=:id_user");
+                          $stmt->bindParam(":id_user",$id_user,PDO::PARAM_STR);
+                          $stmt->execute();
+                        }
                         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach($result as $lista_cooperante){
                              

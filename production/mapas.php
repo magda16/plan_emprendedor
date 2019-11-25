@@ -1,3 +1,9 @@
+<?php
+if(isset($_POST['fecha_inicio'])){
+  echo $_POST['fecha_inicio'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -3,6 +3,8 @@
     $estado="Activo";
     if(isset($_REQUEST['estado'])){
         $estado = $_REQUEST['estado'];
+        $user = $_REQUEST['user'];
+        $id_user = $_REQUEST['id_user'];
     }
 
     if($estado=="Activo"){
@@ -31,9 +33,16 @@
                         
                         include ("../build/conexion.php");
                         $contador=1;
-                        $stmt= $pdo->prepare("SELECT id_actividad, nombre, DATE_FORMAT(fecha_inicio, '%d/%m/%Y') AS fecha_inicio, DATE_FORMAT(fecha_fin, '%d/%m/%Y') AS fecha_fin, hora_inicio, hora_fin, descripcion, estado FROM actividad WHERE estado=:estado");
-                        $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
-                        $stmt->execute();
+                        if($user=="Administrador General"){
+                          $stmt= $pdo->prepare("SELECT id_actividad, nombre, DATE_FORMAT(fecha_inicio, '%d/%m/%Y') AS fecha_inicio, DATE_FORMAT(fecha_fin, '%d/%m/%Y') AS fecha_fin, hora_inicio, hora_fin, descripcion, estado FROM actividad WHERE estado=:estado");
+                          $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
+                          $stmt->execute();
+                        }else if($user=="Administrador Territorio"){
+                          $stmt= $pdo->prepare("SELECT id_actividad, nombre, DATE_FORMAT(fecha_inicio, '%d/%m/%Y') AS fecha_inicio, DATE_FORMAT(fecha_fin, '%d/%m/%Y') AS fecha_fin, hora_inicio, hora_fin, descripcion, estado FROM actividad WHERE estado=:estado AND id_usuario=:id_user");
+                          $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
+                          $stmt->bindParam(":id_user",$id_user,PDO::PARAM_STR);
+                          $stmt->execute();
+                        }
                         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach($result as $lista_actividad){
                              

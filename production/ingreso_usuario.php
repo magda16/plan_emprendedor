@@ -102,7 +102,7 @@ include ("../build/conexion.php");
                    
                     <form id="form_usuario" name="form_usuario" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
-
+                      
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre: <span class="required" style="color: #CD5C5C;"> *</span>
                         </label>

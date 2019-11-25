@@ -3,6 +3,8 @@
     $estado="Activo";
     if(isset($_REQUEST['estado'])){
         $estado = $_REQUEST['estado'];
+        $user = $_REQUEST['user'];
+        $id_user = $_REQUEST['id_user'];
     }
 
     if($estado=="Activo"){
@@ -30,9 +32,16 @@
                         
                         include ("../build/conexion.php");
                         $contador=1;
-                        $stmt= $pdo->prepare("SELECT i.id_institucion, i.nombre, i.areas_trabajo, i.producto_servicio_emp ,d.nombre AS departamento, m.nombre AS municipio, i.estado FROM institucion AS i INNER JOIN departamentos AS d ON (i.id_departamento=d.id_departamento) INNER JOIN municipios AS m ON (i.id_municipio=m.id_municipio) WHERE i.estado=:estado");
-                        $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
-                        $stmt->execute();
+                        if($user=="Administrador General"){
+                          $stmt= $pdo->prepare("SELECT i.id_institucion, i.nombre, i.areas_trabajo, i.producto_servicio_emp ,d.nombre AS departamento, m.nombre AS municipio, i.estado FROM institucion AS i INNER JOIN departamentos AS d ON (i.id_departamento=d.id_departamento) INNER JOIN municipios AS m ON (i.id_municipio=m.id_municipio) WHERE i.estado=:estado");
+                          $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
+                          $stmt->execute();
+                        }else if($user=="Administrador Territorio"){
+                          $stmt= $pdo->prepare("SELECT i.id_institucion, i.nombre, i.areas_trabajo, i.producto_servicio_emp ,d.nombre AS departamento, m.nombre AS municipio, i.estado FROM institucion AS i INNER JOIN departamentos AS d ON (i.id_departamento=d.id_departamento) INNER JOIN municipios AS m ON (i.id_municipio=m.id_municipio) WHERE i.estado=:estado AND i.id_usuario=:id_user");
+                          $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
+                          $stmt->bindParam(":id_user",$id_user,PDO::PARAM_STR);
+                          $stmt->execute();
+                        }
                         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach($result as $lista_institucion){
                              

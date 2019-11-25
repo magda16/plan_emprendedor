@@ -66,7 +66,7 @@ include ("../build/conexion.php");
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h2><i class="fa fa-folder-open-o"></i> Usuarios</h2>
+                <h2><i class="fa fa-folder-open-o"></i> Apoyo a Socios</h2>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -76,11 +76,11 @@ include ("../build/conexion.php");
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Lista Usuarios</h2>
+                    <h2>Lista Apoyo a Socio</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li><a data-toggle="tooltip" data-placement="top" title="Agregar Usuario" href="ingreso_usuario.php"><i class="fa fa-plus-circle"></i></a>
+                      <li><a data-toggle="tooltip" data-placement="top" title="Agregar Apoyo a Socio" href="ingreso_apoyo_socio.php"><i class="fa fa-plus-circle"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -90,74 +90,41 @@ include ("../build/conexion.php");
                   
                     <input type="hidden" name="bandera" id="bandera">
                     <input type="hidden" name="baccion" id="baccion">
+
+                    <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
+                    <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['nivel']; ?>">
+
+                    <div align="center">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12 text-right" for="emprendedor">Emprendedor: <span class="required" style="color: #CD5C5C;"> *</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control" id="emprendedor" name="emprendedor">
+                          </select>
+                        </div>
+                        <span class="help-block"></span>
+                      </div>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 text-right">
+                        <a type="button" id="btnlista" name="btnlista" class="btn btn-app" name="procesar">
+                          <i class="fa fa-repeat"></i> Generar Lista
+                        </a>
+                      </div>
+                      
+                    </div>
+                    <div class="clearfix"></div>
+                   </br></br>
+
+                     <!-- inicio tabla-->
+                     <div id="div_tabla_apoyo_socio">
+                    </div>
+                    <!-- fin tabla-->
                     
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Nombre</th>
-                          <th>Apellido</th>
-                          <th>DUI</th>
-                          <th>NIT</th>
-                          <th>Usuario</th>
-                          <th>Correo</th>
-                          <th>Estado</th>
-                          <th>Nivel</th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                         
-                        $user=$_SESSION['nivel'];
-                        $id_user=$_SESSION['id_usuario_admin'];
-
-                        $contador=1;
-                        if($user=="Administrador General"){
-                          $stmt= $pdo->prepare("SELECT u.id_usuario, u.nombre, u.apellido, u.dui, u.nit, u.usuario, u.correo, u.estado, u.nivel, IF(EXISTS (SELECT * FROM emprendedor AS e WHERE e.id_usuario=u.id_usuario ), 'no', 'si') AS editar FROM usuarios AS u ORDER BY u.nombre");
-                          $stmt->execute();
-                        }else if($user=="Administrador Territorio"){
-                          $stmt= $pdo->prepare("SELECT u.id_usuario, u.nombre, u.apellido, u.dui, u.nit, u.usuario, u.correo, u.estado, u.nivel, IF(EXISTS (SELECT * FROM emprendedor AS e WHERE e.id_usuario=u.id_usuario ), 'no', 'si') AS editar FROM usuarios AS u WHERE u.id_jefe=:id_user ORDER BY u.nombre");
-                          $stmt->bindParam(":id_user",$id_user,PDO::PARAM_STR);
-                          $stmt->execute();
-                        }
-                        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach($result as $lista_usuario){
-                             
-                              echo "<tr>";
-                              echo "<td>" .$contador. "</td>";
-                              echo "<td>" . $lista_usuario['nombre'] . "</td>";
-                              echo "<td>" . $lista_usuario['apellido'] . "</td>";
-                              echo "<td>" . $lista_usuario['dui'] . "</td>";
-                              echo "<td>" . $lista_usuario['nit'] . "</td>";
-                              echo "<td>" . $lista_usuario['usuario'] . "</td>";
-                              echo "<td>" . $lista_usuario['correo'] . "</td>";
-                              echo "<td>" . $lista_usuario['nivel'] . "</td>";
-                              echo "<td>" . $lista_usuario['estado'] . "</td>";
-                              echo "<td>";
-                              $editar=$lista_usuario['editar'];
-                              if($editar=="si"){
-                                echo "<a class='btn btn-success' onclick='mostrar_usuario(".$lista_usuario['id_usuario'].")' data-toggle='tooltip' data-placement='top' title='Mostrar Usuario'><i class='fa fa-eye'></i></a>";
-                                echo "<a class='btn btn-info' onclick='editar_usuario(".$lista_usuario['id_usuario'].")' data-toggle='tooltip' data-placement='top' title='Editar Usuario'><i class='fa fa-edit'></i></a>";
-                                echo "<a class='btn btn-danger' onclick='eliminar_usuario(".$lista_usuario['id_usuario'].")' data-toggle='tooltip' data-placement='top' title='Eliminar Usuario'><i class='fa fa-trash-o'></i></a>";
-                              }else{
-                                echo "<a class='btn btn-success' onclick='mostrar_usuario(".$lista_usuario['id_usuario'].")' data-toggle='tooltip' data-placement='top' title='Mostrar Usuario'><i class='fa fa-eye'></i></a>";
-                                echo "<a class='btn btn-info' onclick='editar_usuario(".$lista_usuario['id_usuario'].")' data-toggle='tooltip' data-placement='top' title='Editar Usuario'><i class='fa fa-edit'></i></a>";
-                              }
-                              echo "</td>";
-                              echo "</tr>";
-                              $contador++;
-                          }
-                        ?>
-                      </tbody>
-                    </table>
-                    <form id="from_editar_usuario" name="from_editar_usuario" action="editar_usuario.php" method="POST">
-                      <input type="hidden" id="id" name="id">
-                    </form>
-
-                    <form id="from_mostrar_usuario" name="from_mostrar_usuario" action="mostrar_usuario.php" target="_blank" method="POST">
-                      <input type="hidden" id="mostrar" name="mostrar">
-                    </form>
+                    <div>
+                        <div class="ln_solid"></div>
+                        <p style="color:RGB(205, 92, 92);">( * ) Campos Obligatorios Editables.</p> 
+                    </div>
+                        
+                    
                       </div>  
 
                     </div>
@@ -213,7 +180,7 @@ include ("../build/conexion.php");
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
     <!-- Validaciones Form Usuario -->
-    <script src="../build/js/validaciones/form_usuario.js"></script>
+    <script src="../build/js/validaciones/form_apoyo_emprendedor.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>

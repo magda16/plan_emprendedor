@@ -90,6 +90,8 @@ include ("../build/conexion.php");
                   
                     <input type="hidden" name="bandera" id="bandera">
                     <input type="hidden" name="baccion" id="baccion">
+                    <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
+                    <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['nivel']; ?>">
                     <input type="hidden" name="estado" id="estado" value="<?php echo "Activo"; ?>">
 
                       <div class="col-md-1 col-sm-1 col-xs-12">

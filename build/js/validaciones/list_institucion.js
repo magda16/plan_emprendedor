@@ -1,9 +1,11 @@
  
     var estado = $('#estado').val();
+    var user = $('#user').val();
+    var id_user = $('#id_usuario').val();
     $.ajax({
       type: 'POST',
       url: '../production/tabla_instituciones.php',
-      data: {'estado': estado}
+      data: {'estado': estado, 'user': user, 'id_user': id_user}
     })
     .done(function(obtenerDatos){
       $('#div_tabla_instituciones').html(obtenerDatos);
@@ -18,11 +20,13 @@
 $('input[id=estado_i]').on('change', function() {
   if ($(this).is(':checked') ) {
     var estado = "Activo";
+    var user = $('#user').val();
+    var id_user = $('#id_usuario').val();
     var table = $('#datatable-responsive').DataTable();
     $.ajax({
       type: 'POST',
       url: '../production/tabla_instituciones.php',
-      data: {'estado': estado}
+      data: {'estado': estado, 'user': user, 'id_user': id_user}
     })
     .done(function(obtenerDatos){
       table.destroy();
@@ -35,11 +39,13 @@ $('input[id=estado_i]').on('change', function() {
     })
   } else {
     var estado = "Inactivo";
+    var user = $('#user').val();
+    var id_user = $('#id_usuario').val();
     var table = $('#datatable-responsive').DataTable();
     $.ajax({
       type: 'POST',
       url: '../production/tabla_instituciones.php',
-      data: {'estado': estado}
+      data: {'estado': estado, 'user': user, 'id_user': id_user}
     })
     .done(function(obtenerDatos){
       table.destroy();
