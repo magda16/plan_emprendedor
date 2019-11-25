@@ -49,8 +49,8 @@ $(document).ready(function(){
         number: true
       },
       municipio:{
-        required: true,
-        number: true
+        required: false,
+        number: false
       },
       canton:{
         required: false,
