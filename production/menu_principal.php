@@ -24,7 +24,7 @@
                   </li>
                   <?php 
                     $nivel_usuario=$_SESSION['nivel'];
-                    if($nivel_usuario=="Administrador"){
+                    if($nivel_usuario=="Administrador General"){
 
                   ?>
                   <li><a><i class="fa fa-folder-o"></i> Emprendedores <span class="fa fa-chevron-down"></span></a>
@@ -36,27 +36,18 @@
                   </li>
                   <li><a><i class="fa fa-folder-o"></i> Instituciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="ingreso_institucion.php">Agregar</a></li>
-                      <li><a href="lista_instituciones.php">Ver Listado</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-folder-o"></i> Actividades <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="ingreso_actividad.php">Agregar</a></li>
-                      <li><a href="lista_actividades.php">Ver Listado</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-folder-o"></i> Apoyo a Socios <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="ingreso_apoyo_socio.php">Agregar</a></li>
-                      <li><a href="lista_apoyo_socios.php">Ver Listado</a></li>
+                      <li><a href="ingreso_institucion.php">Agregar Institucion</a></li>
+                      <li><a href="lista_instituciones.php">Ver Listado Instituciones</a></li>
+                      <li><a href="ingreso_actividad.php">Agregar Actividad</a></li>
+                      <li><a href="lista_actividades.php">Ver Listado Actividades</a></li>
+                      <li><a href="ingreso_apoyo_socio.php">Agregar Apoyo a Socio</a></li>
+                      <li><a href="lista_apoyo_socios.php">Ver Listado Apoyo a Socios</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i>Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="ingreso_usuario.php">Agregar Usuario</span></a></li>
                         <li><a href="lista_usuarios.php">Ver lista de Usuarios</a></li>
-                     
                     </ul>
                   </li> 
                   <li><a><i class="fa fa-newspaper-o"></i>Reportes <span class="fa fa-chevron-down"></span></a>
@@ -66,8 +57,30 @@
                   </li> 
                   <?php
 
-                  }
+                  }else if($nivel_usuario=="Administrador Territorio"){
                   
+                  ?>
+
+
+
+
+
+                  <?php
+
+                  }else if($nivel_usuario=="Tecnico"){
+
+                  ?>
+                  <li><a><i class="fa fa-folder-o"></i> Emprendedores <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="ingreso_emprendedor.php">Agregar</a></li>
+                      <li><a href="lista_emprendedores.php">Ver Listado</a></li>
+                    </ul>
+                  </li>
+
+                  <?php
+
+                  }
+
                   ?>
 
                   <li><a><i class="fa fa-sliders"></i>Configuracion <span class="fa fa-chevron-down"></span></a>

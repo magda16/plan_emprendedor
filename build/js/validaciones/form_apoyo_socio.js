@@ -14,7 +14,7 @@ $(document).ready(function(){
     }, "Ingrese sólo números");
 
 
-    $("#form_ayuda_recibida").validate({
+    $("#form_apoyo_socio").validate({
       errorPlacement: function (error, element) {
             $(element).closest('.form-group').find('.help-block').html(error.html());
         },
@@ -114,16 +114,16 @@ $(document).ready(function(){
 
 
   $("#btnguardar").click(function(){
- if($("#form_ayuda_recibida").valid()){
+ if($("#form_apoyo_socio").valid()){
   $('#bandera').val("add");
   $.ajax({
     type: 'POST',
-    url: '../build/sql/crud_ayudas_recibidas.php',
-    data: $("#form_ayuda_recibida").serialize()
+    url: '../build/sql/crud_apoyo_socios.php',
+    data: $("#form_apoyo_socio").serialize()
   })
   .done(function(resultado_ajax){
     if(resultado_ajax === "Exito"){
-       $("#form_ayuda_recibida")[0].reset();
+       $("#form_apoyo_socio")[0].reset();
        $(".form-group").removeClass("has-success").addClass("");
        PNotify.success({
          title: 'Éxito',
@@ -133,7 +133,7 @@ $(document).ready(function(){
        });
     }
     if(resultado_ajax === "Error"){
-     $("#form_ayuda_recibida")[0].reset();
+     $("#form_apoyo_socio")[0].reset();
      $(".form-group").removeClass("has-success").addClass("");
      PNotify.error({
        title: 'Error',
@@ -161,12 +161,12 @@ $(document).ready(function(){
  });
 
  $("#btneditar").click(function(){
-   if($("#form_ayuda_recibida").valid()){
+   if($("#form_apoyo_socio").valid()){
     $('#bandera').val("edit");
     $.ajax({
       type: 'POST',
-      url: '../build/sql/crud_ayudas_recibidas.php',
-      data: $("#form_ayuda_recibida").serialize()
+      url: '../build/sql/crud_apoyo_socios.php',
+      data: $("#form_apoyo_socio").serialize()
     })
     .done(function(resultado_ajax){
       if(resultado_ajax === "Exito"){
@@ -185,7 +185,7 @@ $(document).ready(function(){
                  primary: true,
                  click: function(notice) {
                    notice.close();
-                   location.href='../production/lista_ayudas_recibidas.php';
+                   location.href='../production/lista_apoyo_socios.php';
                  }
                }]
              },
@@ -216,7 +216,7 @@ $(document).ready(function(){
                primary: true,
                click: function(notice) {
                  notice.close();
-                 location.href='../production/lista_ayudas_recibidas.php';
+                 location.href='../production/lista_apoyo_socios.php';
                }
              }]
            },

@@ -8,13 +8,14 @@ $nivel_usu=$_SESSION['nivel'];
   if(isset($_POST['id'])){
     $id_institucion=$_POST['id'];
 
-        $stmt= $pdo->prepare("SELECT i.id_institucion, i.nombre, i.areas_trabajo, i.id_departamento, d.nombre AS departamento, i.id_municipio, m.nombre AS municipio, i.estado FROM institucion AS i INNER JOIN departamentos AS d ON (i.id_departamento=d.id_departamento) INNER JOIN municipios AS m ON (i.id_municipio=m.id_municipio) WHERE id_institucion=:id_institucion");
+        $stmt= $pdo->prepare("SELECT i.id_institucion, i.nombre, i.areas_trabajo, i.producto_servicio_emp, i.id_departamento, d.nombre AS departamento, i.id_municipio, m.nombre AS municipio, i.estado FROM institucion AS i INNER JOIN departamentos AS d ON (i.id_departamento=d.id_departamento) INNER JOIN municipios AS m ON (i.id_municipio=m.id_municipio) WHERE id_institucion=:id_institucion");
         $stmt->bindParam(":id_institucion",$id_institucion,PDO::PARAM_INT);
         $stmt->execute();
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach($result as $lista_institucion){     
             $nombre_r=$lista_institucion['nombre'];
             $areas_trabajo_r=$lista_institucion['areas_trabajo'];
+            $producto_servicio_emp_r=$lista_institucion['producto_servicio_emp'];
             $id_departamento_r=$lista_institucion['id_departamento'];
             $departamento_r=$lista_institucion['departamento'];
             $id_municipio_r=$lista_institucion['id_municipio'];
@@ -108,6 +109,7 @@ $nivel_usu=$_SESSION['nivel'];
                    
                     <form id="form_institucion" name="form_institucion" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
+                      <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
                       <input type="hidden" id="actualizar" name="actualizar" value="<?php echo $id_institucion; ?>" >
                       <input type="hidden" id="id_departamento" name="id_departamento" value="<?php echo $id_departamento_r; ?>">
                       <input type="hidden" id="id_municipio" name="id_municipio" value="<?php echo $id_municipio_r; ?>">
@@ -128,6 +130,15 @@ $nivel_usu=$_SESSION['nivel'];
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <textarea id="areas_trabajo" name="areas_trabajo" class="form-control col-md-7 col-xs-12" required="required" placeholder="Ingrese Áreas de Trabajo"><?php echo $areas_trabajo_r; ?></textarea>
+                        </div>
+                        <span class="help-block" ></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" for="producto_servicio_emp">Productos y Servicios al Emprendedor: <span class="required" style="color: #CD5C5C;"> *</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea id="producto_servicio_emp" name="producto_servicio_emp" class="form-control col-md-7 col-xs-12" required="required" placeholder="Ingrese Productos y Servicios al Emprendedor"><?php echo $producto_servicio_emp_r; ?></textarea>
                         </div>
                         <span class="help-block" ></span>
                       </div>

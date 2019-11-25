@@ -2,7 +2,7 @@
     
     function obtenerEmprendedores(){
         require '../conexion.php';
-        $stmt= $pdo->prepare("SELECT * FROM emprendedor ORDER BY actividad_eco ASC");
+        $stmt= $pdo->prepare("SELECT DISTINCT * FROM emprendedor ORDER BY actividad_eco ASC");
         $stmt->execute();
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);  
         $listas = "<option value=''>Seleccione Actividad Económica</option>";

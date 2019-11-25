@@ -1,13 +1,13 @@
 <?php
 session_start();
-$logueo=$_SESSION['logueado'];
+$logueo=$_SESSION['acceso'];
 if($logueo=='si'){
 include ("../build/conexion.php");
 
 if(isset($_POST['mostrar'])){
     $id_usuario=$_POST['mostrar'];
 
-        $stmt= $pdo->prepare("SELECT u.nombre, u.apellido, u.dui, u.nit, u.usuario, u.clave, u.correo,o.id_oficina, o.nombre AS oficina, u.estado, u.nivel FROM usuarios AS u INNER JOIN oficinas AS o ON (u.id_oficina=o.id_oficina) WHERE id_usuario=:id_usuario");
+        $stmt= $pdo->prepare("SELECT * FROM usuarios WHERE id_usuario=:id_usuario");
         $stmt->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
         $stmt->execute();
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -19,10 +19,19 @@ if(isset($_POST['mostrar'])){
             $usuario=$lista_usuario['usuario'];
             $clave=$lista_usuario['clave'];
             $correo=$lista_usuario['correo'];
-            $id_oficina=$lista_usuario['id_oficina'];
-            $oficina=$lista_usuario['oficina'];
             $estado=$lista_usuario['estado'];
             $nivel=$lista_usuario['nivel'];
+            $id_jefe=$lista_usuario['id_jefe'];
+        }
+
+        if($id_jefe > 0){
+          $stmt= $pdo->prepare("SELECT * FROM usuarios WHERE id_usuario=:id_jefe");
+          $stmt->bindParam(":id_jefe",$id_jefe,PDO::PARAM_INT);
+          $stmt->execute();
+          $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+          foreach($result as $lista_usuario){     
+              $nombre_jefe=$lista_usuario['nombre']." ".$lista_usuario['apellido'];
+          }
         }
 
 } 
@@ -36,7 +45,7 @@ if(isset($_POST['mostrar'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Plan Internacional | Bolsa de Trabajo</title>
+    <title>Plan Internacional</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,24 +68,6 @@ if(isset($_POST['mostrar'])){
               include("logo.php");
             ?>
             <!-- /logo -->
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <h3 style="color:#FFFFFF" align="center">Bolsa de Trabajo</h3>
-              <div class="profile_pic">
-                <img src="images/user2.png" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                
-                <h4 style="color:#FFFFFF">Bienvenido</h4>
-                <h2><?php echo $_SESSION['usuario_g']; ?></h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <br />
 
             <!-- sidebar menu -->
             <?php
@@ -176,12 +167,28 @@ if(isset($_POST['mostrar'])){
                           <label class="control-label"><?php echo $nivel; ?></label>
                         </div>
                       </div>
+                      <?php
+                        if($id_jefe > 0){
+                      ?>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Oficina: <span style="color:	#000080;"> '</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Administrador Territorial: <span style="color:	#000080;"> '</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 lcolor"><br />
+                          <i class="fa fa-user"></i>
+                          <label class="control-label  "><?php echo $nombre_jefe; ?> </label>
+                        </div>
+                      </div>
+
+                      <?php
+                        }
+                      ?>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Correo Electrónico: <span style="color:	#000080;"> '</span>
+                        </label>
                         <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
-                          <i class="fa fa-building-o"></i>
-                          <label class="control-label  "><?php echo $oficina; ?> </label>
+                          <i class="fa fa-envelope-o"></i>
+                          <label class="control-label"><?php echo $correo; ?></label>
                         </div>
                       </div>
 
@@ -190,15 +197,6 @@ if(isset($_POST['mostrar'])){
                         <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
                           <i class="fa fa-circle-o"></i>
                           <label class="control-label"><?php echo $estado; ?></label>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Correo Electrónico: <span style="color:	#000080;"> '</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
-                          <i class="fa fa-envelope-o"></i>
-                          <label class="control-label"><?php echo $correo; ?></label>
                         </div>
                       </div>
                  

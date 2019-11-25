@@ -124,8 +124,8 @@ include ("../build/conexion.php");
                               echo "<td>" . $lista_usuario['nit'] . "</td>";
                               echo "<td>" . $lista_usuario['usuario'] . "</td>";
                               echo "<td>" . $lista_usuario['correo'] . "</td>";
-                              echo "<td>" . $lista_usuario['estado'] . "</td>";
                               echo "<td>" . $lista_usuario['nivel'] . "</td>";
+                              echo "<td>" . $lista_usuario['estado'] . "</td>";
                               echo "<td>";
                               $editar=$lista_usuario['editar'];
                               if($editar=="si"){

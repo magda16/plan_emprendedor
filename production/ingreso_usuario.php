@@ -158,7 +158,8 @@ include ("../build/conexion.php");
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control" id="nivel" name="nivel">
                             <option selected="selected" value="">Seleccione Nivel</option>
-                            <option value="Administrador">Administrador</option>
+                            <option value="Administrador General">Administrador General</option>
+                            <option value="Administrador Territorio">Administrador Territorio</option>
                             <option value="Tecnico">Técnico</option>
                           </select>
                         </div>

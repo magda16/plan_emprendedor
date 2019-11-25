@@ -1,9 +1,9 @@
-function mostrar_ayudas_recibidas(id){
+function mostrar_apoyo_socio(id){
     $("#mostrar").val(id);
-    $("#from_mostrar_ayudas_recibidas").submit();
+    $("#from_mostrar_apoyo_socio").submit();
    }
    
-   function editar_ayudas_recibidas(id){
+   function editar_apoyo_socio(id){
     var notice = PNotify.notice({
       title: 'Advertencia',
       text: '¿Esta seguro que desea modificar el registro?',
@@ -31,7 +31,7 @@ function mostrar_ayudas_recibidas(id){
     });
     notice.on('pnotify.confirm', function() {
       $("#id").val(id);
-      $("#from_editar_ayudas_recibidas").submit();
+      $("#from_editar_apoyo_socio").submit();
     });
     notice.on('pnotify.cancel', function() {
       PNotify.success({
@@ -44,7 +44,7 @@ function mostrar_ayudas_recibidas(id){
     
    }
    
-   function eliminar_ayudas_recibidas(id){
+   function eliminar_apoyo_socio(id){
    
     var notice = PNotify.notice({
       title: 'Advertencia',

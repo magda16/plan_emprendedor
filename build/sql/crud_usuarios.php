@@ -18,7 +18,7 @@
           $clave=$_POST["clave"];
           $correo=$_POST["correo"];
           $nivel=$_POST["nivel"];
-          $estado="activo";
+          $estado="Activo";
           $respuesta_secreta="";
 
           if(empty($_POST["jefe"])){
@@ -64,10 +64,9 @@
         $estado=$_POST["estado"];
         $clave=$_POST["clave"];
         $correo=$_POST["correo"];
-        $nivel=$_POST["nivel_e"];
         $respuesta_secreta="";
 
-        if(empty($_POST["empresa"])){
+        /*if(empty($_POST["empresa"])){
           if($nivel=="Empresa"){
             $id_empresa=$_POST["id_empresa"];
           }else{
@@ -75,14 +74,9 @@
           }
         } else {
           $id_empresa=$_POST["empresa"];
-        }
+        }*/
         
-        if($_POST["oficina"]!=""){
-          $id_oficina=$_POST["oficina"];
-        }else{
-          $id_oficina=$_POST["id_oficina"];
-        }
-
+        
          
           $stmt=$pdo->prepare("UPDATE usuarios SET 
           nombre=:nombre, 
@@ -92,10 +86,7 @@
           usuario=:usuario, 
           clave=:clave, 
           correo=:correo, 
-          id_oficina=:id_oficina, 
           estado=:estado, 
-          nivel=:nivel, 
-          id_empresa=:id_empresa, 
           respuesta_secreta=:respuesta_secreta WHERE id_usuario=:id_usuario");
           $stmt->bindParam(":nombre",$nombre,PDO::PARAM_STR);
           $stmt->bindParam(":apellido",$apellido,PDO::PARAM_STR);
@@ -104,10 +95,7 @@
           $stmt->bindParam(":usuario",$usuario,PDO::PARAM_STR);
           $stmt->bindParam(":clave",$clave,PDO::PARAM_STR);
           $stmt->bindParam(":correo",$correo,PDO::PARAM_STR);
-          $stmt->bindParam(":id_oficina",$id_oficina,PDO::PARAM_INT);
           $stmt->bindParam(":estado",$estado,PDO::PARAM_STR);
-          $stmt->bindParam(":nivel",$nivel,PDO::PARAM_STR);
-          $stmt->bindParam(":id_empresa",$id_empresa,PDO::PARAM_INT);
           $stmt->bindParam(":respuesta_secreta",$respuesta_secreta,PDO::PARAM_STR);
           $stmt->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
 

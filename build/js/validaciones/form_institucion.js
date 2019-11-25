@@ -22,6 +22,10 @@ $(document).ready(function(){
           required: true,
           minlength: 3
         }, 
+        producto_servicio_emp: {
+          required: true,
+          minlength: 3
+        }, 
         departamento:{
             required: true,
             number: true
@@ -40,6 +44,10 @@ $(document).ready(function(){
           required: "Por favor, ingrese áreas de trabajo.",
           minlength: "Debe ingresar m&iacute;nimo 3 carácteres."
         },
+        producto_servicio_emp: {
+          required: "Por favor, ingrese productos y servicios al emprendedor.",
+          minlength: "Debe ingresar m&iacute;nimo 3 carácteres."
+        },
         departamento: {
             required: "Por favor, seleccione departamento."
         },
@@ -49,7 +57,7 @@ $(document).ready(function(){
       }
     });
 
-    $.ajax({
+        $.ajax({
         type: 'POST',
         url: '../build/sql/lista_departamentos.php'
         })

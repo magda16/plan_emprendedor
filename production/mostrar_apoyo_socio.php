@@ -78,7 +78,7 @@ $nivel_usu=$_SESSION['nivel'];
           <div class="col-sm-12 col-sm-offset-2 col-md-8 col-md-offset-2">
             <div class="page-title">
               <div class="title_left">
-                <h2><i class="fa fa-folder-open-o"></i> Ayudas Recibidas</h2>
+                <h2><i class="fa fa-folder-open-o"></i> Apoyo a Socios </h2>
               </div>  
             </div>
             <div class="clearfix"></div>
@@ -88,11 +88,11 @@ $nivel_usu=$_SESSION['nivel'];
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Mostrar Ayudas Recibidas</h2>
+                    <h2>Mostrar Apoyo a Socio</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Ayudas Recibidas" href="lista_ayudas_recibidas.php" ><i class="fa fa-list"></i></a>
+                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Apoyo a Socios" href="lista_apoyo_socios.php" ><i class="fa fa-list"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -149,7 +149,7 @@ $nivel_usu=$_SESSION['nivel'];
                       <div class="ln_solid"></div>
                         <p style="color: RGB(0, 0, 128);">( ' ) Campos no Editables.</p>
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 text-right">
-                          <button class="btn btn-round btn-default" type="button" onclick="location.href='../production/lista_ayudas_recibidas.php'"><i class="fa fa-undo"></i>  Regresar</button>
+                          <button class="btn btn-round btn-default" type="button" onclick="location.href='../production/lista_apoyo_socios.php'"><i class="fa fa-undo"></i>  Regresar</button>
                         </div>
                       
                     </form> 

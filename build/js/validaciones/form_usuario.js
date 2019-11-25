@@ -50,6 +50,9 @@ $(document).ready(function(){
           nivel_e:{
             required: true
           },
+          jefe:{
+            required: true
+          },
            correo: {
             correo: true,
             required: true,
@@ -94,6 +97,9 @@ $(document).ready(function(){
           nivel_e: {
             required: "Por favor, seleccione nivel."
           },
+          jefe: {
+            required: "Por favor, seleccione administrador territorial."
+          },
            correo: {
             required: "Por favor, ingrese correo electrónico.",
             minlength: "Debe ingresar m&iacute;nimo 8 carácteres."
@@ -119,25 +125,6 @@ $(document).ready(function(){
           } else {
               $("#div_o").hide();
               $("#oficina").val("");
-          }
-        }); 
-
-        $('input[id=em]').on('change', function() {
-          if ($(this).is(':checked') ) {
-            $("#div_empresa").append("<div class='form-group' id='div_emp' name='div_emp'><label class='control-label col-md-3 col-sm-3 col-xs-12' for='empresa'>Empresa: <span class='required' style='color: #CD5C5C;'> *</span></label><div class='col-md-6 col-sm-6 col-xs-12'><select class='form-control' id='empresa' name='empresa'></select></div><span class='help-block'></span></div>");
-          
-            $.ajax({
-              type: 'POST',
-              url: '../build/sql/lista_empresas.php'
-              })
-              .done(function(lista_empresas){
-                $('#empresa').html(lista_empresas)
-              })
-              .fail(function(){
-                alert('Error al cargar la Pagina')
-              })
-          } else {
-            $("#div_emp").remove();
           }
         }); 
 

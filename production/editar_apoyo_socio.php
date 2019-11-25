@@ -97,7 +97,7 @@ $nivel_usu=$_SESSION['nivel'];
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Ayudas Recibidas" href="lista_ayudas_recibidas.php" ><i class="fa fa-list"></i></a>
+                      <li><a data-toggle="tooltip" data-placement="top" title="Lista Apoyo a Socios" href="lista_apoyo_socios.php" ><i class="fa fa-list"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -105,7 +105,7 @@ $nivel_usu=$_SESSION['nivel'];
                   <div class="x_content">
                   <br />
                    
-                    <form id="form_ayuda_recibida" name="form_ayuda_recibida" method="POST" class="form-horizontal form-label-left">
+                    <form id="form_apoyo_socio" name="form_apoyo_socio" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
                       <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
                       <input type="hidden" id="actualizar" name="actualizar" value="<?php echo $id_cooperante; ?>" >
@@ -255,7 +255,7 @@ $nivel_usu=$_SESSION['nivel'];
     <!-- Validaciones -->
     <script src="../vendors/validar/jquery.validate.js"></script>
     <!-- Validaciones Form Oficina -->
-    <script src="../build/js/validaciones/form_ayudas_recibidas.js"></script>
+    <script src="../build/js/validaciones/form_apoyo_socio.js"></script>
     <!-- jquery.inputmask -->
     <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 

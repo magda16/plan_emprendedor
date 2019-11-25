@@ -8,7 +8,7 @@ $nivel_usu=$_SESSION['nivel'];
 if(isset($_POST['id'])){
     $id_usuario=$_POST['id'];
 
-        $stmt= $pdo->prepare("SELECT u.nombre, u.apellido, u.dui, u.nit, u.usuario, u.clave, u.correo,o.id_oficina, o.nombre AS oficina, u.estado, u.nivel, u.id_empresa FROM usuarios AS u INNER JOIN oficinas AS o ON (u.id_oficina=o.id_oficina) WHERE id_usuario=:id_usuario");
+        $stmt= $pdo->prepare("SELECT * FROM usuarios WHERE id_usuario=:id_usuario");
         $stmt->bindParam(":id_usuario",$id_usuario,PDO::PARAM_INT);
         $stmt->execute();
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -20,11 +20,8 @@ if(isset($_POST['id'])){
             $usuario=$lista_usuario['usuario'];
             $clave=$lista_usuario['clave'];
             $correo=$lista_usuario['correo'];
-            $id_oficina=$lista_usuario['id_oficina'];
-            $oficina=$lista_usuario['oficina'];
             $estado=$lista_usuario['estado'];
             $nivel=$lista_usuario['nivel'];
-            $id_empresa=$lista_usuario['id_empresa'];
         }
 
 }else{
@@ -163,67 +160,13 @@ if(isset($_POST['id'])){
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nivel_e">Nivel: <span class="required" style="color: #CD5C5C;"> *</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nivel_e">Nivel: <span style="color:	#000080;"> '</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" id="nivel_e" name="nivel_e">
+                          <select class="form-control" id="nivel_e" name="nivel_e" disabled>
                             <option selected="selected" value="">Seleccione Nivel</option>
-                            <option value="Gestor Empresarial" <?php if($nivel=="Gestor Empresarial") echo "selected"; ?> >Gestro Empresarial</option>
-                            <option value="Gestor Empleo Plan" <?php if($nivel=="Gestor Empleo Plan") echo "selected"; ?> >Gestor Empleo Plan</option>
-                            <option value="Gestor Empleo" <?php if($nivel=="Gestor Empleo") echo "selected"; ?> >Gestor Empleo</option>
-                            <option value="Empresa" <?php if($nivel=="Empresa") echo "selected"; ?> >Empresa</option>
-                          </select>
-                        </div>
-                        <span class="help-block"></span>
-                      </div>
-                      <?php
-                        if($id_empresa!=0){
-                      ?>
-                      <div id="d_e" name="d_e">
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Empresa: <span style="color:	#000080;"> '</span></label>
-                          <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
-                          <i class="fa fa-building-o"></i>
-                          <label class="control-label"><?php echo $nombre_comercial; ?> </label>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" >¿Desea Cambiar Empresa?
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                            </br>
-                            <input type="checkbox" class="" id="em" name="em"/>
-                          </div>
-                        </div>
-                      </div>
-                      <?php
-                        }
-                      ?>
-
-                      <div id="div_empresa" name="div_empresa">
-                      </div>
-                                
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Oficina: <span style="color:	#000080;"> '</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
-                        <i class="fa fa-building-o"></i>
-                        <label class="control-label"><?php echo $oficina; ?> </label>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >¿Desea Cambiar Oficina?
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          </br>
-                          <input type="checkbox" class="" id="of" name="of"/>
-                        </div>
-                      </div>
-
-                      <div class="form-group" id="div_o" name="div_o">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="oficina">Oficina: <span class="required" style="color: #CD5C5C;"> *</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" id="oficina" name="oficina">
+                            <option value="Administrador General" <?php if($nivel=="Administrador General") echo "selected"; ?> > Administrador General </option>
+                            <option value="Administrador Territorio" <?php if($nivel=="Administrador Territorio") echo "selected"; ?> > Administrador Territorio </option>
+                            <option value="Tecnico" <?php if($nivel=="Tecnico") echo "selected"; ?> > Técnico </option>
                           </select>
                         </div>
                         <span class="help-block"></span>
@@ -233,8 +176,8 @@ if(isset($_POST['id'])){
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">Estado: <span class="required" style="color: #CD5C5C;"> *</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control" id="estado" name="estado">
-                            <option value="activo" <?php if($estado=="activo") echo "selected"; ?> >Activo</option>
-                            <option value="inactivo" <?php if($estado=="inactivo") echo "selected"; ?> >Inactivo</option>
+                            <option value="Activo" <?php if($estado=="Activo") echo "selected"; ?> >Activo</option>
+                            <option value="Inactivo" <?php if($estado=="Inactivo") echo "selected"; ?> >Inactivo</option>
                           </select>
                         </div>
                         <span class="help-block"></span>

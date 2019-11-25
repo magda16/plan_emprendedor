@@ -103,24 +103,24 @@
                         <span class="help-block"></span>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group" id="result_f_i" name="result_f_i">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Inicio: día/mes/año <span class="required" style="color: #CD5C5C;"> *</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                           <input type="text" class="form-control has-feedback-left" id="fecha_inicio" name="fecha_inicio" required="required" class="form-control col-md-7 col-xs-12" data-date-end-date = "0d">
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         </div>
-                        <span class="help-block"></span>
+                        <span class="help-block" id="result_f_i_error" name="result_f_i_error"></span>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group" id="result_f_f" name="result_f_f">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_fin">Fecha Fin: día/mes/año <span class="required" style="color: #CD5C5C;"> *</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                           <input type="text" class="form-control has-feedback-left" id="fecha_fin" name="fecha_fin" required="required" class="form-control col-md-7 col-xs-12">
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         </div>
-                        <span class="help-block"></span>
+                        <span class="help-block" id="result_f_f_error" name="result_f_f_error"></span>
                       </div>
 
                       <div class="form-group">

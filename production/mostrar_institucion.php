@@ -8,13 +8,14 @@ $nivel_usu=$_SESSION['nivel'];
   if(isset($_POST['mostrar'])){
     $id_institucion=$_POST['mostrar'];
 
-    $stmt= $pdo->prepare("SELECT i.id_institucion, i.nombre, i.areas_trabajo, d.nombre AS departamento, m.nombre AS municipio, i.estado FROM institucion AS i INNER JOIN departamentos AS d ON (i.id_departamento=d.id_departamento) INNER JOIN municipios AS m ON (i.id_municipio=m.id_municipio) WHERE id_institucion=:id_institucion");
+    $stmt= $pdo->prepare("SELECT i.id_institucion, i.nombre, i.areas_trabajo, i.producto_servicio_emp, d.nombre AS departamento, m.nombre AS municipio, i.estado FROM institucion AS i INNER JOIN departamentos AS d ON (i.id_departamento=d.id_departamento) INNER JOIN municipios AS m ON (i.id_municipio=m.id_municipio) WHERE id_institucion=:id_institucion");
     $stmt->bindParam(":id_institucion",$id_institucion,PDO::PARAM_INT);
     $stmt->execute();
     $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach($result as $lista_institucion){     
         $nombre_r=$lista_institucion['nombre'];
         $areas_trabajo_r=$lista_institucion['areas_trabajo'];
+        $producto_servicio_emp_r=$lista_institucion['producto_servicio_emp'];
         $departamento_r=$lista_institucion['departamento'];
         $municipio_r= $lista_institucion['municipio'];
         $estado_r=$lista_institucion['estado'];
@@ -125,6 +126,15 @@ $nivel_usu=$_SESSION['nivel'];
                         <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
                           <i class="fa fa-circle-o"></i>
                           <label class="control-label "><?php echo $areas_trabajo_r; ?></label>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left">Productos y Servicios al Emprendedor: <span style="color:	#000080;"> '</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 lcolor">
+                          <i class="fa fa-circle-o"></i>
+                          <label class="control-label "><?php echo $producto_servicio_emp_r; ?></label>
                         </div>
                       </div>
 

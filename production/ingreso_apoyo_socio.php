@@ -86,7 +86,7 @@
                   <div class="x_content">
                   <br />
                    
-                    <form id="form_ayuda_recibida" name="form_ayuda_recibida" method="POST" class="form-horizontal form-label-left">
+                    <form id="form_apoyo_socio" name="form_apoyo_socio" method="POST" class="form-horizontal form-label-left">
                       <input type="hidden" name="bandera" id="bandera">
                       <input type="hidden" id="id_usuario" name="id_usuario"  value="<?php echo $_SESSION['id_usuario_admin']; ?>">
 

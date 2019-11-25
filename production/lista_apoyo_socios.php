@@ -122,9 +122,9 @@ include ("../build/conexion.php");
                               echo "<td>" . $lista_cooperante['nombre'] . " " . $lista_cooperante['apellido'] . "</td>";
                               echo "<td>";
                               
-                                echo "<a class='btn btn-success' onclick='mostrar_ayudas_recibidas(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Mostrar Ayudas Recibidas'><i class='fa fa-eye'></i></a>";
-                                echo "<a class='btn btn-info' onclick='editar_ayudas_recibidas(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Editar Ayudas Recibidas'><i class='fa fa-edit'></i></a>";
-                                echo "<a class='btn btn-danger' onclick='eliminar_ayudas_recibidas(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Eliminar Ayudas Recibidas'><i class='fa fa-trash-o'></i></a>";
+                                echo "<a class='btn btn-success' onclick='mostrar_apoyo_socio(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Mostrar Apoyo a Socio'><i class='fa fa-eye'></i></a>";
+                                echo "<a class='btn btn-info' onclick='editar_apoyo_socio(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Editar Apoyo a Socio'><i class='fa fa-edit'></i></a>";
+                                echo "<a class='btn btn-danger' onclick='eliminar_apoyo_socio(".$lista_cooperante['id_cooperante'].")' data-toggle='tooltip' data-placement='top' title='Eliminar Apoyo a Socio'><i class='fa fa-trash-o'></i></a>";
                              
                               echo "</td>";
                               echo "</tr>";
@@ -133,11 +133,11 @@ include ("../build/conexion.php");
                         ?>
                       </tbody>
                     </table>
-                    <form id="from_editar_ayudas_recibidas" name="from_editar_ayudas_recibidas" action="editar_ayudas_recibidas.php" method="POST">
+                    <form id="from_editar_apoyo_socio" name="from_editar_apoyo_socio" action="editar_apoyo_socio.php" method="POST">
                       <input type="hidden" id="id" name="id">
                     </form>
 
-                    <form id="from_mostrar_ayudas_recibidas" name="from_mostrar_ayudas_recibidas" action="mostrar_ayudas_recibidas.php" target="_blank" method="POST">
+                    <form id="from_mostrar_apoyo_socio" name="from_mostrar_apoyo_socio" action="mostrar_apoyo_socio.php" target="_blank" method="POST">
                       <input type="hidden" id="mostrar" name="mostrar">
                     </form>
                       </div>  

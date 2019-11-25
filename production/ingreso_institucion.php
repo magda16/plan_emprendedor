@@ -109,6 +109,15 @@
                             <span class="help-block" ></span>
                           </div>
 
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" for="producto_servicio_emp">Productos y Servicios al Emprendedor: <span class="required" style="color: #CD5C5C;"> *</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="producto_servicio_emp" name="producto_servicio_emp" class="form-control col-md-7 col-xs-12" required="required" placeholder="Ingrese Productos y Servicios al Emprendedor"></textarea>
+                            </div>
+                            <span class="help-block" ></span>
+                          </div>
+
 
                       <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="departamento">Departamento: <span class="required" style="color: #CD5C5C;"> *</span></label>
