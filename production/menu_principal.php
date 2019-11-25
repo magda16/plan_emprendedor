@@ -32,6 +32,7 @@
                       <li><a href="ingreso_emprendedor.php">Agregar</a></li>
                       <li><a href="lista_emprendedores.php">Ver Listado</a></li>
                       <li><a href="mapa_emprendedores.php">Ver Mapa</a></li>
+                      <li><a href="lista_apoyo_socio.php">Apoyo a Socio</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-folder-o"></i> Instituciones <span class="fa fa-chevron-down"></span></a>

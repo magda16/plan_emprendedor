@@ -87,7 +87,7 @@ include ("../build/conexion.php");
                   </div>
                   <div class="x_content">
                   <br />
-                  
+                  <form id="form_apoyo_socio" name="form_apoyo_socio" method="POST" class="form-horizontal form-label-left">
                     <input type="hidden" name="bandera" id="bandera">
                     <input type="hidden" name="baccion" id="baccion">
 
@@ -111,8 +111,9 @@ include ("../build/conexion.php");
                       </div>
                       
                     </div>
+                    </form> 
                     <div class="clearfix"></div>
-                   </br></br>
+                   
 
                      <!-- inicio tabla-->
                      <div id="div_tabla_apoyo_socio">

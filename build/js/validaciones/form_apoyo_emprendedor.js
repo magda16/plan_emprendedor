@@ -34,33 +34,33 @@ $(document).ready(function(){
         }
       }
     });
-
-
-
-  $("#btnlista").click(function(){
-    if($("#form_actividad").valid()){
-    var user = $('#user').val();
-    var id_user = $('#id_usuario').val();
-    var id_emprendedor = $('#emprendedor').val();
-    var table = $('#datatable-responsive').DataTable();
-    $.ajax({
-      type: 'POST',
-      url: '../production/tabla_apoyo_emp.php',
-      data: {'estado': estado, 'user': user, 'id_user': id_user, 'id_emprendedor': id_emprendedor}
-    })
-    .done(function(obtenerDatos){
-      table.destroy();
-      $('#div_tabla_apoyo_socio').html(obtenerDatos);
-      table=$('#datatable-responsive').DataTable();
-                     
-    })
-    .fail(function(){
-      alert('Error al cargar la Pagina')
-    })
-  } 
+  
 
 });
 
-  
+$("#btnlista").click(function(){
+   
+  if($("#form_apoyo_socio").valid()){
+
+    
+  var user = $('#user').val();
+  var id_user = $('#id_usuario').val();
+  var id_emprendedor = $('#emprendedor').val();
+  var table = $('#datatable-responsive').DataTable();
+  $.ajax({
+    type: 'POST',
+    url: '../production/tabla_apoyo_emp.php',
+    data: {'user': user, 'id_user': id_user, 'id_emprendedor': id_emprendedor}
+  })
+  .done(function(obtenerDatos){
+    table.destroy();
+    $('#div_tabla_apoyo_socio').html(obtenerDatos);
+    table=$('#datatable-responsive').DataTable();
+                   
+  })
+  .fail(function(){
+    alert('Error al cargar la Pagina')
+  })
+} 
 
 });

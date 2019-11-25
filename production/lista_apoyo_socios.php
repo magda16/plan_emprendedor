@@ -99,7 +99,7 @@ include ("../build/conexion.php");
                           <th>Monto ($)</th>
                           <th>Tipo Ayuda</th>
                           <th>Fecha Ingreso</th>
-                          <th>Empresario</th>
+                          <th>Emprendedor</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
